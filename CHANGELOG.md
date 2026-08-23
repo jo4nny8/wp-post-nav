@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-08-23T19:18:00Z — Improve Customizer guidance and safe controls
+
+- Clarified that excerpt length is measured in words.
+- Replaced the free-text post-type field with safe checkboxes matching the existing Settings page.
+- Replaced the fallback image URL field with the WordPress media upload control.
+- Added explanatory documentation to every Customizer section and the key controls.
+- Ensured checkbox selections continue to save as the existing compatible post-type array.
+
 ## 2026-08-23T19:02:00Z — Refresh all Customizer preview settings
 
 - Changed all WP Post Nav Customizer controls to refresh the live preview when changed.

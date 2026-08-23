@@ -26,6 +26,7 @@ class WPPN_Customizer {
 	public function __construct() {
 		add_action( 'customize_register', array( $this, 'register' ), 10, 1 );
 		add_action( 'customize_preview_init', array( $this, 'preview_init' ), 10, 1 );
+		add_action( 'customize_controls_enqueue_scripts', array( $this, 'controls_scripts' ) );
 	}
 
 	/**
@@ -50,16 +51,16 @@ class WPPN_Customizer {
 		);
 
 		$sections = array(
-			'general'    => __( 'General', 'wp-post-nav' ),
-			'navigation' => __( 'Navigation', 'wp-post-nav' ),
-			'layout'     => __( 'Layout', 'wp-post-nav' ),
-			'colours'    => __( 'Colours', 'wp-post-nav' ),
-			'typography' => __( 'Typography', 'wp-post-nav' ),
-			'images'     => __( 'Images', 'wp-post-nav' ),
-			'advanced'   => __( 'Advanced', 'wp-post-nav' ),
+			'general'    => array( __( 'General', 'wp-post-nav' ), __( 'Choose which navigation content is visible. Excerpt length is measured in words.', 'wp-post-nav' ) ),
+			'navigation' => array( __( 'Navigation', 'wp-post-nav' ), __( 'Choose the public post types and category rules used by the previous and next links.', 'wp-post-nav' ) ),
+			'layout'     => array( __( 'Layout', 'wp-post-nav' ), __( 'Set the dimensions of the floating navigation buttons in pixels.', 'wp-post-nav' ) ),
+			'colours'    => array( __( 'Colours', 'wp-post-nav' ), __( 'Choose the navigation background and text colours. Changes are previewed before publishing.', 'wp-post-nav' ) ),
+			'typography' => array( __( 'Typography', 'wp-post-nav' ), __( 'Set heading, title, category and excerpt font sizes in pixels.', 'wp-post-nav' ) ),
+			'images'     => array( __( 'Images', 'wp-post-nav' ), __( 'Choose whether featured images appear and upload a fallback image for posts without one.', 'wp-post-nav' ) ),
+			'advanced'   => array( __( 'Advanced', 'wp-post-nav' ), __( 'Use shortcode mode when you need to place navigation manually in a template or page.', 'wp-post-nav' ) ),
 		);
-		foreach ( $sections as $id => $title ) {
-			$wp_customize->add_section( 'wppn_' . $id, array( 'title' => $title, 'panel' => self::PANEL ) );
+		foreach ( $sections as $id => $section ) {
+			$wp_customize->add_section( 'wppn_' . $id, array( 'title' => $section[0], 'description' => $section[1], 'panel' => self::PANEL ) );
 		}
 
 		$controls = array(
@@ -67,9 +68,9 @@ class WPPN_Customizer {
 			'wp_post_nav_show_title'            => array( 'section' => 'general', 'label' => __( 'Show titles', 'wp-post-nav' ), 'type' => 'checkbox' ),
 			'wp_post_nav_show_category'         => array( 'section' => 'general', 'label' => __( 'Show categories', 'wp-post-nav' ), 'type' => 'checkbox' ),
 			'wp_post_nav_show_post_excerpt'     => array( 'section' => 'general', 'label' => __( 'Show excerpts', 'wp-post-nav' ), 'type' => 'checkbox' ),
-			'wp_post_nav_excerpt_length'        => array( 'section' => 'general', 'label' => __( 'Excerpt length', 'wp-post-nav' ), 'type' => 'number' ),
+			'wp_post_nav_excerpt_length'        => array( 'section' => 'general', 'label' => __( 'Excerpt length (words)', 'wp-post-nav' ), 'description' => __( 'The maximum number of words shown in the excerpt.', 'wp-post-nav' ), 'type' => 'number' ),
 			'wp_post_nav_same_category'         => array( 'section' => 'navigation', 'label' => __( 'Limit navigation to the same category', 'wp-post-nav' ), 'type' => 'checkbox' ),
-			'wp_post_nav_post_types'            => array( 'section' => 'navigation', 'label' => __( 'Post types (one per line)', 'wp-post-nav' ), 'type' => 'textarea' ),
+			'wp_post_nav_post_types'            => array( 'section' => 'navigation', 'label' => __( 'Post types', 'wp-post-nav' ), 'description' => __( 'Tick the post types where WP Post Nav should appear.', 'wp-post-nav' ), 'type' => 'post_types' ),
 			'wp_post_nav_nav_button_width'      => array( 'section' => 'layout', 'label' => __( 'Navigation button width (px)', 'wp-post-nav' ), 'type' => 'number' ),
 			'wp_post_nav_nav_button_height'     => array( 'section' => 'layout', 'label' => __( 'Navigation button height (px)', 'wp-post-nav' ), 'type' => 'number' ),
 			'wp_post_nav_background_color'      => array( 'section' => 'colours', 'label' => __( 'Background colour', 'wp-post-nav' ), 'type' => 'color' ),
@@ -83,7 +84,7 @@ class WPPN_Customizer {
 			'wp_post_nav_category_size'         => array( 'section' => 'typography', 'label' => __( 'Category size (px)', 'wp-post-nav' ), 'type' => 'number' ),
 			'wp_post_nav_excerpt_size'          => array( 'section' => 'typography', 'label' => __( 'Excerpt size (px)', 'wp-post-nav' ), 'type' => 'number' ),
 			'wp_post_nav_show_featured_image'   => array( 'section' => 'images', 'label' => __( 'Show featured images', 'wp-post-nav' ), 'type' => 'checkbox' ),
-			'wp_post_nav_fallback_image'        => array( 'section' => 'images', 'label' => __( 'Fallback image URL', 'wp-post-nav' ), 'type' => 'url' ),
+			'wp_post_nav_fallback_image'        => array( 'section' => 'images', 'label' => __( 'Fallback image', 'wp-post-nav' ), 'description' => __( 'Upload an image used when a post has no featured image. The default image is used when this is empty.', 'wp-post-nav' ), 'type' => 'image' ),
 			'wp_post_nav_shortcode'             => array( 'section' => 'advanced', 'label' => __( 'Use shortcode mode', 'wp-post-nav' ), 'type' => 'checkbox' ),
 		);
 
@@ -96,7 +97,7 @@ class WPPN_Customizer {
 					'type'                => 'option',
 					'default'             => $default,
 					'sanitize_callback'   => function ( $value ) use ( $key ) {
-						if ( 'wp_post_nav_post_types' === $key ) {
+						if ( 'wp_post_nav_post_types' === $key && ! is_array( $value ) ) {
 							$value = preg_split( '/\r?\n/', (string) $value );
 						}
 						return WPPN_Settings::sanitize_value( $key, $value );
@@ -107,17 +108,24 @@ class WPPN_Customizer {
 				)
 			);
 			$value = $default;
-			if ( 'textarea' === $control['type'] ) {
-			$value = implode( "\n", array_keys( WPPN_Settings::get()[ $key ] ) );
-				$control['input_attrs'] = array( 'rows' => 4 );
-			}
 			$control_args = array_merge( $control, array( 'settings' => $setting_id, 'section' => 'wppn_' . $control['section'], 'value' => $value ) );
 			if ( 'wp_post_nav_post_types' === $key && class_exists( 'WPPN_Customizer_Post_Types_Control' ) ) {
 				$wp_customize->add_control( new WPPN_Customizer_Post_Types_Control( $wp_customize, $setting_id, $control_args ) );
+			} elseif ( 'wp_post_nav_fallback_image' === $key && class_exists( 'WP_Customize_Image_Control' ) ) {
+				$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, $setting_id, $control_args ) );
 			} else {
 				$wp_customize->add_control( $setting_id, $control_args );
 			}
 		}
+	}
+
+	/**
+	 * Enqueue the checkbox control behaviour in the Customizer controls frame.
+	 *
+	 * @return void
+	 */
+	public function controls_scripts() {
+		wp_enqueue_script( 'wppn-customizer-controls', plugin_dir_url( dirname( __FILE__ ) ) . 'public/js/wp-post-nav-customizer-controls.js', array( 'customize-controls', 'jquery' ), '2.1.0.3', true );
 	}
 
 	/**

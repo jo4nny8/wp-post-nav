@@ -24,6 +24,9 @@ final class CustomizerTest extends TestCase {
 		$this->assertArrayHasKey( 'wppn_settings[wp_post_nav_background_color]', $manager->settings );
 		$this->assertSame( 'refresh', $manager->settings['wppn_settings[wp_post_nav_show_title]']['transport'] );
 		$this->assertSame( 'refresh', $manager->settings['wppn_settings[wp_post_nav_excerpt_length]']['transport'] );
+		$this->assertSame( 'post_types', $manager->controls['wppn_settings[wp_post_nav_post_types]']['type'] );
+		$this->assertSame( 'image', $manager->controls['wppn_settings[wp_post_nav_fallback_image]']['type'] );
+		$this->assertSame( 'The maximum number of words shown in the excerpt.', $manager->controls['wppn_settings[wp_post_nav_excerpt_length]']['description'] );
 		$this->assertSame( '#8358b0', WPPN_Settings::sanitize_value( 'wp_post_nav_background_color', '#8358b0' ) );
 		$this->assertSame( '#8358b0', WPPN_Settings::sanitize_value( 'wp_post_nav_background_color', 'not-a-colour' ) );
 		$this->assertSame( array( 'post' => 'post' ), WPPN_Settings::sanitize_value( 'wp_post_nav_post_types', array( 'post' => 'post' ) ) );
