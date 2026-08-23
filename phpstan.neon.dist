@@ -1,9 +1,16 @@
 parameters:
     level: 5
+    scanFiles:
+        - vendor/php-stubs/wordpress-stubs/wordpress-stubs.php
     paths:
-        - admin
-        - includes
-        - public
+        - admin/class-wp-post-nav-admin.php
+        - includes/class-wp-post-nav-activator.php
+        - includes/class-wp-post-nav-deactivator.php
+        - includes/class-wp-post-nav-i18n.php
+        - includes/class-wp-post-nav-loader.php
+        - includes/class-wp-post-nav-shortcode.php
+        - includes/class-wp-post-nav.php
+        - public/class-wp-post-nav-public.php
         - uninstall.php
         - wp-post-nav.php
     excludePaths:
@@ -11,4 +18,3 @@ parameters:
         - assets/*
         - build/*
         - vendor/*
-

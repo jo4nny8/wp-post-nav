@@ -13,6 +13,6 @@
     <exclude-pattern>/build/</exclude-pattern>
 
     <rule ref="WordPress"/>
-    <rule ref="PHPCompatibilityWP"/>
+    <config name="testVersion" value="8.0-"/>
+    <rule ref="PHPCompatibility"/>
 </ruleset>
-

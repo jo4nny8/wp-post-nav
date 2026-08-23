@@ -7,7 +7,6 @@ Thumbs.db
 
 # PHP dependencies and reports
 /vendor/
-/composer.lock
 .phpcs-cache
 phpstan.neon
 phpstan-baseline.neon
@@ -21,4 +20,3 @@ phpstan-baseline.neon
 # WordPress runtime files
 /wp-content/
 /wp-config.php
-
