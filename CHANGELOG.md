@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-08-23T17:47:16Z — Phase 4A Customizer architecture and migration standards
+
+- Added `docs/CUSTOMIZER-AUDIT.md` documenting the current settings page, options, validation, frontend consumers, dynamic CSS, and compatibility risks.
+- Added `docs/CUSTOMIZER-ARCHITECTURE.md` defining the proposed `WPPN_Settings`, `WPPN_Customizer`, and `WPPN_Migrations` responsibilities.
+- Added `docs/CUSTOMIZER-IMPLEMENTATION-PLAN.md` with staged settings abstraction, Customizer, live-preview, CSS, and deprecation phases.
+- Documented mandatory settings and database migration rules in the central `jo4nny8/jo4nny8-development-standards` repository.
+- No plugin runtime code, settings, database options, public APIs, rendering logic, or frontend output was changed.
+
 ## 2026-08-23T16:37:49Z — Phase 3 WordPress integration testing and CI
 
 - Added a WordPress test-library bootstrap with a separate integration PHPUnit configuration.
