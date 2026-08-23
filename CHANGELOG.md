@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-08-23T16:37:49Z — Phase 3 WordPress integration testing and CI
+
+- Added a WordPress test-library bootstrap with a separate integration PHPUnit configuration.
+- Added reusable post, page, custom post type, taxonomy, and attachment fixtures.
+- Added integration coverage for adjacent navigation ordering, shortcode output, empty navigation, pages, custom post types, attachments, and repeated shortcode calls.
+- Added `docs/FRONTEND-BASELINE.md` documenting compatibility-sensitive markup, selectors, and current rendering behaviour.
+- Added `.github/workflows/quality.yml` for Composer, syntax, PHPUnit, PHPCS, PHPStan, package, and WordPress integration validation.
+- Updated `docs/TESTING.md` with WordPress test-library and MySQL setup instructions.
+- No production plugin code, public interface, frontend markup, CSS, or runtime behaviour was changed.
+
 ## 2026-08-23T14:53:21Z — Phase 2 compatibility testing foundation
 
 - Added Composer-managed PHPUnit 10 and the `tests/` unit and integration test structure.
