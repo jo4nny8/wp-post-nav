@@ -6,6 +6,7 @@
 - Added the historical `tags/` and directory `assets/` snapshots.
 - Added Git `main` and `develop` branches and the `wordpress-org-2.0.3` baseline tag.
 - Added `.gitignore`, Composer development dependencies, PHP_CodeSniffer configuration, PHPStan configuration, and the clean package build script.
+- Package builds exclude Git/development metadata, historical tags, repository assets, and temporary files.
 - Added `REPOSITORY-COMPARISON.md` documenting upstream/local differences.
 - No plugin functionality was changed as part of repository setup.
 - PHP lint and package validation are required before release; full WordPress integration tests remain outstanding.
