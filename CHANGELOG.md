@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-08-23T14:53:21Z — Phase 2 compatibility testing foundation
+
+- Added Composer-managed PHPUnit 10 and the `tests/` unit and integration test structure.
+- Added lifecycle, settings, hook, shortcode-registration, and template-availability compatibility tests.
+- Added `docs/TESTING.md` covering MAMP Pro, WordPress, optional plugin dependencies, commands, expected results, and coverage gaps.
+- Updated package generation to exclude tests and development documentation from the WordPress.org distribution archive.
+- No plugin runtime behaviour, public interface, hook, filter, option, shortcode, or rendering structure was changed.
+
 ## 2026-08-23T13:20:59Z — Jo4nny8 workflow migration audit
 
 - Added `AGENTS.md`, `CODEX.md`, and `docs/DEVELOPMENT.md` with project conventions and development workflow guidance.
