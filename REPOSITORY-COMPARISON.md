@@ -21,13 +21,13 @@ The official repository contains `trunk/`, `tags/`, `branches/`, and `assets/`. 
 
 ## Local versus upstream trunk
 
-The upstream trunk contains 36 source files. The local Phase 1 tree contains the same core layout plus the modernization documentation and changes.
+The upstream trunk contains 36 source files. The local Phase 1 tree contains the same core layout plus the modernisation documentation and changes.
 
 Upstream-only source retained in the Git import:
 
 - `includes/class-wp-post-nav-shortcode.php`
 
-Files changed by the Phase 1 modernization include:
+Files changed by the Phase 1 modernisation include:
 
 - `wp-post-nav.php`
 - `includes/class-wp-post-nav.php`
@@ -39,9 +39,8 @@ Files changed by the Phase 1 modernization include:
 - `public/partials/wp-post-nav-public-primary.php`
 - `README.txt`
 
-The local-only modernization documents are `DEVELOPMENT-ASSESSMENT.md` and `CHANGELOG.md`.
+The local-only modernisation documents are `DEVELOPMENT-ASSESSMENT.md` and `CHANGELOG.md`.
 
 ## Import decision
 
-The official trunk was committed as the 2.0.3 baseline before the local modernization was copied back. The official `tags/` and `assets/` directories remain available for historical reference. No upstream-only source was removed.
-
+The official trunk was committed as the 2.0.3 baseline before the local modernisation was copied back. The official `tags/` and `assets/` directories remain available for historical reference. No upstream-only source was removed.

@@ -85,7 +85,7 @@ Drop a question in the plugin support option above or email me @ contact@wppostn
 == Changelog ==
 
 = 2.0.4 =
-Phase 1 modernization maintenance release. Fixed automatic navigation detection, shortcode mode handling, activation/deactivation registration, version migration, attachment navigation, SEO Framework compatibility, PHP 8 safety, excerpt handling, and settings validation. Added development assessment and documented known limitations. Rendering refactoring remains planned for a later release.
+Phase 1 modernisation maintenance release. Fixed automatic navigation detection, shortcode mode handling, activation/deactivation registration, version migration, attachment navigation, SEO Framework compatibility, PHP 8 safety, excerpt handling, and settings validation. Added development assessment and documented known limitations. Rendering refactoring remains planned for a later release.
 
 = 2.0.3 =
 Compatability with WordPress 6.3

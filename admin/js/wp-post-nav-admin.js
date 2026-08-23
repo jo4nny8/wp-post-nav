@@ -45,29 +45,29 @@
 
 		triggers.eq(0).click(); 
 		
- 		//setup the default optionds for each colorpicker
+		// Set up the default options for each colour picker.
 		$('.color-field').each(function(){
-			//get the default colour which we defined in the admin page setup
+			// Get the default colour defined in the admin page setup.
 			var default_colour = $(this).attr("default");
       $(this).wpColorPicker({
-        // you can declare a default color here,
-        // or in the data-default-color attribute on the input
+        // You can declare a default colour here,
+        // or in the data-default-color attribute on the input.
         defaultColor: default_colour,
 
-        // a callback to fire whenever the color changes to a valid color
+        // a callback to fire whenever the colour changes to a valid colour
         change: function(event, ui){},
-        // a callback to fire when the input is emptied or an invalid color
+        // A callback to fire when the input is emptied or contains an invalid colour.
         clear: function() {
         	 defaultColor: default_colour
 
         },
-        //additional colorpicker options - not used
-        // hide the color picker controls on load
+        // Additional colour-picker options - not used.
+        // Hide the colour-picker controls on load.
         //hide: true,
-        // set  total width
+        // Set the total width.
         //width : 200,
-        // show a group of common colors beneath the square
-        // or, supply an array of colors to customize further
+        // Show a group of common colours beneath the square,
+        // or supply an array of colours to customise further.
         //palettes: ['#444444','#ff2255','#559999','#99CCFF','#00c1e8','#F9DE0E','#111111','#EEEEDD']
       });
     })

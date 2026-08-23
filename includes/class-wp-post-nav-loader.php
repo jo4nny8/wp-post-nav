@@ -36,7 +36,7 @@ class wp_post_nav_Loader {
 	protected $filters;
 
 	/**
-	 * Initialize the collections used to maintain the actions and filters.
+	 * Initialise the collections used to maintain the actions and filters.
 	 *
 	 * @since    0.0.1
 	 */

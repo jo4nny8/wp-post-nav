@@ -37,7 +37,7 @@ class wp_post_nav_Public {
 	private $version;
 
 	/**
-	 * Initialize the class and set its properties.
+	 * Initialise the class and set its properties.
 	 *
 	 * @since    0.0.1
 	 * @var      string    $name       The name of the plugin.

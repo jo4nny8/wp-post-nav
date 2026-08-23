@@ -26,11 +26,11 @@ The plugin currently provides:
 - Same-taxonomy navigation.
 - A shortcode alternative to footer navigation.
 - Optional title, category, excerpt, and featured-image output.
-- Configurable colors, dimensions, and fallback images.
+- Configurable colours, dimensions, and fallback images.
 - Attachment return navigation.
 - Optional WooCommerce out-of-stock filtering.
 - Optional Yoast SEO and SEO Framework primary-term integrations.
-- Developer filters for post-type selection and excerpt behavior.
+- Developer filters for post-type selection and excerpt behaviour.
 
 ## Phase 1 findings
 
@@ -46,7 +46,7 @@ The plugin currently provides:
 
 ### Security and correctness
 
-- Settings validation has a typo that leaves the open-background color unchecked and omits heading color/size validation.
+- Settings validation has a typo that leaves the open-background colour unchecked and omits heading colour/size validation.
 - Dynamic CSS and HTML values need context-appropriate escaping and sanitization.
 - Fallback-image validation checks only a URL extension.
 - Unknown submitted option keys are accepted.
@@ -80,7 +80,7 @@ The following should be treated as compatibility-sensitive:
 4. Replacing duplicated templates may affect CSS selectors and developer filters.
 5. Changing primary-term integrations may alter navigation results when both SEO plugins are active.
 
-Each behavior change should be documented in the changelog and tested against a legacy settings array.
+Each behaviour change should be documented in the changelog and tested against a legacy settings array.
 
 ## Recommended development phases
 
@@ -104,7 +104,7 @@ Each behavior change should be documented in the changelog and tested against a 
 - Preserve existing hooks, CSS classes, IDs, and shortcode attributes where possible.
 - Add escaping and semantic markup during the refactor.
 
-### Phase 4: Accessibility and frontend modernization
+### Phase 4: Accessibility and frontend modernisation
 
 - Replace hover-only interaction with keyboard/touch-accessible controls.
 - Add responsive layout improvements, focus states, labels, and reduced-motion support.
@@ -113,7 +113,7 @@ Each behavior change should be documented in the changelog and tested against a 
 
 - Generate a clean distribution ZIP.
 - Update POT translations and compatibility metadata.
-- Test activation, upgrade, deactivation, uninstall, and rollback behavior.
+- Test activation, upgrade, deactivation, uninstall, and rollback behaviour.
 
 ## Testing requirements
 
@@ -125,10 +125,10 @@ Required before a production release:
 - Shortcode mode and both shortcode display overrides.
 - Empty previous/next states.
 - Same-taxonomy and unrestricted navigation.
-- Settings validation with invalid colors, dimensions, URLs, and unknown keys.
+- Settings validation with invalid colours, dimensions, URLs, and unknown keys.
 - Upgrade from legacy individual options and version `2.0.3`.
-- WooCommerce product and stock-status behavior where WooCommerce is installed.
-- Yoast SEO and SEO Framework behavior independently and together.
+- WooCommerce product and stock-status behaviour where WooCommerce is installed.
+- Yoast SEO and SEO Framework behaviour independently and together.
 - Keyboard, touch, responsive, and screen-reader checks.
 
 ## Current limitations

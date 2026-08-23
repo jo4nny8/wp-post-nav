@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-08-23T09:48:47Z — British English standardisation
+
+- Standardised maintained comments, documentation, changelog prose, and user-facing text to British English.
+- Preserved WordPress and API identifiers, compatibility-sensitive option keys, CSS properties, and literal data attributes.
+- Rechecked PHP syntax, Composer configuration, package generation, and ZIP integrity after the text-only changes.
+
 ## 2026-08-23T09:44:46Z — GitHub remote connected
 
 - Configured `https://github.com/jo4nny8/wp-post-nav.git` as the Git `origin` remote.
@@ -24,7 +30,7 @@
 
 ### Summary
 
-Phase 1 modernization and safe maintenance release.
+Phase 1 modernisation and safe maintenance release.
 
 ### Bug fixes
 
@@ -40,9 +46,9 @@ Phase 1 modernization and safe maintenance release.
 
 ### Security and compatibility improvements
 
-- Sanitized dynamic CSS colors and dimensions before inline CSS generation.
-- Added heading color and size validation.
-- Corrected open-background color validation.
+- Sanitised dynamic CSS colours and dimensions before inline CSS generation.
+- Added heading colour and size validation.
+- Corrected open-background colour validation.
 - Rejected unknown submitted settings keys.
 - Added queried-object checks for shortcode contexts.
 

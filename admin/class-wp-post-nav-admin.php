@@ -36,7 +36,7 @@ class wp_post_nav_admin {
   private $version;
 
   /**
-   * Initialize the class and set its properties.
+   * Initialise the class and set its properties.
    *
    * @since    0.0.1
    * @var      string    $name       The name of this plugin.
@@ -79,7 +79,7 @@ class wp_post_nav_admin {
     //Admin CSS
     wp_enqueue_style( $this->name, plugin_dir_url( __FILE__ ) . 'css/wp-post-nav-admin.css', array(), $this->version, 'all' );
       
-    //the color picker styles (built in from WordPress) which is required for picking colours
+    // the colour picker styles (built in from WordPress) which are required for picking colours
     wp_enqueue_style( 'wp-color-picker' );
   }
 
@@ -661,7 +661,7 @@ class wp_post_nav_admin {
           $color = trim( $validation );
           $color = strip_tags( stripslashes( $color ) );
            
-          // Check if is a valid hex color
+          // Check if this is a valid hex colour.
           if( FALSE === $this->check_color( $color ) ) {
             // Set the error message
             $error_message = str_replace("wp_post_nav_",' ',$key);
@@ -689,10 +689,10 @@ class wp_post_nav_admin {
     return $data;
   }
 
-  //check input is valid hex color - custom option called from validation array
+  // Check that the input is a valid hex colour - custom option called from validation array.
   public function check_color( $value ) { 
        
-      if ( preg_match( '/^#[a-f0-9]{6}$/i', $value ) ) { // if user insert a HEX color with #     
+      if ( preg_match( '/^#[a-f0-9]{6}$/i', $value ) ) { // If the user inserts a hex colour with #.
           return true;
       }
        
@@ -882,7 +882,7 @@ class wp_post_nav_admin {
         }
       break;
 
-      //color picker field - class needs to be added to make the built in colorpicker work.  We need to add the default handle 
+      // Colour picker field - class needs to be added to make the built-in colour picker work. We need to add the default handle.
       //for the js to pick this up to apply default colours on settings
       case 'color':
         printf( '<input name="%1$s" id="%1$s" type="%2$s" class="color-field" default="%4$s" value="%3$s" /> ' . $field['after'],
