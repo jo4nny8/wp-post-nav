@@ -14,9 +14,11 @@ rsync -a \
   --exclude '.github/' \
   --exclude 'assets/' \
   --exclude 'tags/' \
+  --exclude 'vendor/' \
   --exclude 'build/' \
   --exclude 'bin/' \
   --exclude 'composer.json' \
+  --exclude 'composer.lock' \
   --exclude 'phpcs.xml.dist' \
   --exclude 'phpstan.neon.dist' \
   --exclude '.gitignore' \
