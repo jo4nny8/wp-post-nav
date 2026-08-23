@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-08-23T18:49:00Z — Harden Customizer preview initialisation
+
+- Prevented the Customizer preview script from throwing when WordPress has not exposed a matching live setting in the preview context.
+- Preserved live CSS updates where the Customizer setting API is available.
+- Bumped the preview asset version so existing browser caches receive the corrected script.
+
 ## 2026-08-23T18:43:00Z — Fix Customizer post-type control fatal
 
 - Fixed the Customizer post-type control fatal caused by passing the compatible post-type array directly to WordPress’s string textarea renderer.

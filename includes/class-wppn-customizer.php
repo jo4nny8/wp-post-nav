@@ -11,37 +11,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Displays the existing post-type array as newline-separated Customizer text.
- *
- * The stored setting must remain an array for compatibility, while the core
- * textarea control requires a string value when it renders.
- */
-if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'WPPN_Customizer_Post_Types_Control' ) ) {
-	class WPPN_Customizer_Post_Types_Control extends WP_Customize_Control {
-		/**
-		 * Render the post-type input without changing its stored format.
-		 *
-		 * @return void
-		 */
-		public function render_content() {
-			$value = $this->value();
-			$value = is_array( $value ) ? implode( "\n", array_keys( $value ) ) : (string) $value;
-			?>
-			<label>
-				<?php if ( ! empty( $this->label ) ) : ?>
-					<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
-				<?php endif; ?>
-				<?php if ( ! empty( $this->description ) ) : ?>
-					<span class="description customize-control-description"><?php echo esc_html( $this->description ); ?></span>
-				<?php endif; ?>
-				<textarea class="widefat" rows="4" <?php $this->input_attrs(); ?>><?php echo esc_textarea( $value ); ?></textarea>
-			</label>
-			<?php
-		}
-	}
-}
-
-/**
  * Registers the preferred visual settings interface while retaining legacy keys.
  */
 class WPPN_Customizer {
@@ -66,6 +35,11 @@ class WPPN_Customizer {
 	 * @return void
 	 */
 	public function register( $wp_customize ) {
+		// WP_Customize_Control is loaded by WordPress immediately before this hook.
+		if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'WPPN_Customizer_Post_Types_Control' ) ) {
+			require_once __DIR__ . '/class-wppn-customizer-post-types-control.php';
+		}
+
 		$wp_customize->add_panel(
 			self::PANEL,
 			array(
@@ -150,6 +124,6 @@ class WPPN_Customizer {
 	 * @return void
 	 */
 	public function preview_init() {
-		wp_enqueue_script( 'wppn-customizer-preview', plugin_dir_url( dirname( __FILE__ ) ) . 'public/js/wp-post-nav-customizer.js', array( 'customize-preview' ), '2.1.0', true );
+		wp_enqueue_script( 'wppn-customizer-preview', plugin_dir_url( dirname( __FILE__ ) ) . 'public/js/wp-post-nav-customizer.js', array( 'customize-preview' ), '2.1.0.2', true );
 	}
 }

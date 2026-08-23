@@ -1,6 +1,10 @@
 (function ( api ) {
 	'use strict';
 
+	if ( ! api || typeof api !== 'function' ) {
+		return;
+	}
+
 	var variables = {
 		'background_color': '--wppn-background-color',
 		'open_background_color': '--wppn-open-background-color',
@@ -15,7 +19,11 @@
 	};
 
 	Object.keys( variables ).forEach( function ( key ) {
-		api( 'wppn_settings[wp_post_nav_' + key + ']' ).bind( function ( value ) {
+		var setting = api( 'wppn_settings[wp_post_nav_' + key + ']' );
+		if ( ! setting || typeof setting.bind !== 'function' ) {
+			return;
+		}
+		setting.bind( function ( value ) {
 			document.documentElement.style.setProperty( variables[ key ], value + ( key.indexOf( '_size' ) !== -1 ? 'px' : '' ) );
 		} );
 	} );
