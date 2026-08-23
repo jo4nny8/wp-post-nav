@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-08-23T18:31:00Z — Fix Customizer registration lifecycle
+
+- Registered the WP Post Nav Customizer hooks directly when `WPPN_Customizer` is constructed.
+- Removed the indirect loader registration that could leave the panel unavailable before `customize_register` fired on a live WordPress site.
+- Added a regression assertion for the Customizer lifecycle hooks.
+- Existing PHP 8.2/8.3 dynamic-property deprecations in legacy classes remain documented and unchanged.
+
 ## 2026-08-23T18:12:00Z — Version 2.1.0 Customizer settings migration
 
 - Added `WPPN_Settings` as the shared settings, sanitisation and compatibility layer.

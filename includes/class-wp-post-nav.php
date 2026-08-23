@@ -157,8 +157,6 @@ class wp_post_nav {
 		$plugin_basename = plugin_basename( plugin_dir_path( __DIR__ ) . $this->plugin_name . '.php' );
                 //write_log($plugin_basename);
 		$this->loader->add_filter( 'plugin_action_links_' . $plugin_basename, $plugin_admin, 'add_action_links' );
-		$this->loader->add_action( 'customize_register', $plugin_customizer, 'register' );
-		$this->loader->add_action( 'customize_preview_init', $plugin_customizer, 'preview_init' );
 
 	}
 

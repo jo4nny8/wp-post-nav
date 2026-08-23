@@ -25,4 +25,13 @@ final class CustomizerTest extends TestCase {
 		$this->assertSame( '#8358b0', WPPN_Settings::sanitize_value( 'wp_post_nav_background_color', '#8358b0' ) );
 		$this->assertSame( '#8358b0', WPPN_Settings::sanitize_value( 'wp_post_nav_background_color', 'not-a-colour' ) );
 	}
+
+	public function test_customizer_attaches_its_lifecycle_hooks_during_construction(): void {
+		$GLOBALS['wppn_test_hooks'] = array();
+		new WPPN_Customizer();
+
+		$hooks = array_column( $GLOBALS['wppn_test_hooks']['actions'], 'hook' );
+		$this->assertContains( 'customize_register', $hooks );
+		$this->assertContains( 'customize_preview_init', $hooks );
+	}
 }

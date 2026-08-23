@@ -17,6 +17,18 @@ class WPPN_Customizer {
 	const PANEL = 'wppn_panel';
 
 	/**
+	 * Register lifecycle hooks immediately during plugin bootstrap.
+	 *
+	 * The Customizer manager is created from the `plugins_loaded` lifecycle and
+	 * fires `customize_register` later. Keeping this hook direct avoids relying
+	 * on a second, unrelated loader to register Customizer components.
+	 */
+	public function __construct() {
+		add_action( 'customize_register', array( $this, 'register' ), 10, 1 );
+		add_action( 'customize_preview_init', array( $this, 'preview_init' ), 10, 1 );
+	}
+
+	/**
 	 * Register controls against the consolidated option.
 	 *
 	 * @param WP_Customize_Manager $wp_customize Customizer manager.
