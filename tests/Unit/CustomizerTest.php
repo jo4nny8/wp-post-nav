@@ -22,6 +22,8 @@ final class CustomizerTest extends TestCase {
 		$this->assertArrayHasKey( 'wppn_panel', $manager->panels );
 		$this->assertCount( 7, $manager->sections );
 		$this->assertArrayHasKey( 'wppn_settings[wp_post_nav_background_color]', $manager->settings );
+		$this->assertSame( 'refresh', $manager->settings['wppn_settings[wp_post_nav_show_title]']['transport'] );
+		$this->assertSame( 'refresh', $manager->settings['wppn_settings[wp_post_nav_excerpt_length]']['transport'] );
 		$this->assertSame( '#8358b0', WPPN_Settings::sanitize_value( 'wp_post_nav_background_color', '#8358b0' ) );
 		$this->assertSame( '#8358b0', WPPN_Settings::sanitize_value( 'wp_post_nav_background_color', 'not-a-colour' ) );
 		$this->assertSame( array( 'post' => 'post' ), WPPN_Settings::sanitize_value( 'wp_post_nav_post_types', array( 'post' => 'post' ) ) );

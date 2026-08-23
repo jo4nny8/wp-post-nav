@@ -101,7 +101,9 @@ class WPPN_Customizer {
 						}
 						return WPPN_Settings::sanitize_value( $key, $value );
 					},
-					'transport'           => 'postMessage',
+					// Every setting affects rendered navigation or its CSS. Refreshing the
+					// preview keeps titles, excerpts, images, colours and layout in sync.
+					'transport'           => 'refresh',
 				)
 			);
 			$value = $default;

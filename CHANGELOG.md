@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-08-23T19:02:00Z — Refresh all Customizer preview settings
+
+- Changed all WP Post Nav Customizer controls to refresh the live preview when changed.
+- Ensured visibility, excerpt, image, navigation, colour, typography and layout changes are rendered through the existing frontend code before publishing.
+- Preserved the existing settings option, public output structure and compatibility-sensitive keys.
+
 ## 2026-08-23T18:49:00Z — Harden Customizer preview initialisation
 
 - Prevented the Customizer preview script from throwing when WordPress has not exposed a matching live setting in the preview context.
