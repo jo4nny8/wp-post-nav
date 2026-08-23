@@ -1,0 +1,14 @@
+parameters:
+    level: 5
+    paths:
+        - admin
+        - includes
+        - public
+        - uninstall.php
+        - wp-post-nav.php
+    excludePaths:
+        - tags/*
+        - assets/*
+        - build/*
+        - vendor/*
+

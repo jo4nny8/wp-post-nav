@@ -1,0 +1,24 @@
+# Operating-system and editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# PHP dependencies and reports
+/vendor/
+/composer.lock
+.phpcs-cache
+phpstan.neon
+phpstan-baseline.neon
+
+# Local builds and temporary files
+/*.zip
+/build/
+/tmp/
+*.log
+
+# WordPress runtime files
+/wp-content/
+/wp-config.php
+

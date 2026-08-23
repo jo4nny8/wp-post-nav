@@ -1,0 +1,20 @@
+{
+  "name": "aquarius-home-improvements/wp-post-nav",
+  "description": "Previous and next navigation for WordPress posts and custom post types.",
+  "type": "wordpress-plugin",
+  "license": "GPL-2.0-or-later",
+  "require-dev": {
+    "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
+    "phpcompatibility/php-compatibility": "^9.0",
+    "phpstan/phpstan": "^2.0",
+    "squizlabs/php_codesniffer": "^3.10",
+    "wp-coding-standards/wpcs": "^3.1"
+  },
+  "scripts": {
+    "lint:php": "find . -path ./vendor -prune -o -name '*.php' -print0 | xargs -0 -n1 php -l",
+    "lint:phpcs": "phpcs --standard=phpcs.xml.dist",
+    "analyse": "phpstan analyse --configuration=phpstan.neon.dist",
+    "build": "sh bin/build-package.sh"
+  }
+}
+
