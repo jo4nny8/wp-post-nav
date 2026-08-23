@@ -19,6 +19,9 @@ rsync -a \
   --exclude 'composer.json' \
   --exclude 'phpcs.xml.dist' \
   --exclude 'phpstan.neon.dist' \
+  --exclude '.gitignore' \
+  --exclude 'DEVELOPMENT-ASSESSMENT.md' \
+  --exclude 'REPOSITORY-COMPARISON.md' \
   --exclude '*.zip' \
   "$project_dir/" "$build_dir/wp-post-nav/"
 
@@ -27,4 +30,3 @@ rm -f "$package_file"
 rm -rf "$build_dir"
 
 printf 'Built %s\n' "$package_file"
-
