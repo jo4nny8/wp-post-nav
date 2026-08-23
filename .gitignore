@@ -7,6 +7,8 @@ Thumbs.db
 
 # PHP dependencies and reports
 /vendor/
+.phpunit.result.cache
+.phpunit.cache/
 .phpcs-cache
 phpstan.neon
 phpstan-baseline.neon
