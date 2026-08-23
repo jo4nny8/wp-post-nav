@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-08-23T09:44:46Z — GitHub remote connected
+
+- Configured `https://github.com/jo4nny8/wp-post-nav.git` as the Git `origin` remote.
+- Published the `main` and `develop` branches and the `wordpress-org-2.0.3` tag.
+- Left the pre-existing GitHub `master` branch unchanged.
+- WordPress.org SVN remains a separate release-publishing destination.
+
 ## 2026-08-23T08:51:12Z — Development workflow established
 
 - Imported the official WordPress.org SVN baseline at revision `3661533`.
