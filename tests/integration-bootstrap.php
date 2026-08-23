@@ -9,7 +9,7 @@ if ( $wordpress_tests_dir && file_exists( $wordpress_tests_dir . '/includes/func
 		'muplugins_loaded',
 		static function () {
 			// Seed the current version so the plugin bootstrap does not run its legacy upgrade path.
-			update_option( 'wp_post_nav_version', '2.0.4' );
+			update_option( 'wp_post_nav_version', '2.1.0' );
 			require_once dirname( __DIR__ ) . '/wp-post-nav.php';
 		}
 	);

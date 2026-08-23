@@ -11,7 +11,7 @@
 | New-code prefix | `wppn` / `WPPN_` |
 | GitHub repository | `jo4nny8/wp-post-nav` |
 | Official source | WordPress.org Plugin Repository |
-| Current development version | `2.0.4` |
+| Current development version | `2.1.0` |
 
 ## Local workflow
 
@@ -42,3 +42,9 @@ Run `bin/build-package.sh` to create the distribution archive. The package exclu
 ## Compatibility
 
 Do not rename existing `wp_post_nav_*` functions, classes, options, hooks, filters, shortcode names, CSS classes, IDs, or template paths. New interfaces should use `wppn_` or `WPPN_` and should be introduced with documentation and tests.
+
+## Settings and migration
+
+Version 2.1.0 introduces `wppn_settings` as the consolidated settings option. `WPPN_Settings` is the single validation and formatting boundary used by the legacy settings page, Customizer and frontend. `WPPN_Migrations` imports the 2.0.4 option structure, verifies the new option, records `wppn_migration_210_complete`, then removes obsolete options. The migration is version-specific, idempotent and fails without destructive cleanup if persistence cannot be verified.
+
+The Customizer is the preferred interface under Appearance → Customise. The Settings → WP Post Nav page remains available as a compatibility editor during the 2.1.x transition.

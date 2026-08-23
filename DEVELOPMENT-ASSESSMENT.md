@@ -1,7 +1,7 @@
 # WP Post Nav Development Assessment
 
 Assessment date: 2026-08-23
-Current plugin version: 2.0.4
+Current plugin version: 2.1.0
 Plugin type: WordPress plugin (not a theme)
 
 ## Current architecture

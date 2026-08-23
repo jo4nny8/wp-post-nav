@@ -25,7 +25,17 @@ class wp_post_nav_Activator {
 	 * @since    0.0.1
 	 */
 	public static function activate() {
-      $current_version = '2.0.4';
+      $current_version = '2.1.0';
+
+		if ( class_exists( 'WPPN_Migrations' ) ) {
+			WPPN_Migrations::migrate_2_0_4_to_2_1_0();
+			if ( get_option( 'wppn_migration_210_complete', false ) ) {
+				update_option( 'wp_post_nav_version', $current_version );
+				return;
+			}
+			// Preserve recoverability if the verified migration could not complete.
+			return;
+		}
 
 		  //first see if any of the old options exist in the database (therefore and old version upgrade)
       $defaults = [];

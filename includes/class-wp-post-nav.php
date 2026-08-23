@@ -57,7 +57,7 @@ class wp_post_nav {
 	public function __construct() {
 
 		$this->plugin_name = 'wp-post-nav';
-		$this->version = '2.0.4';
+		$this->version = '2.1.0';
 
 		$this->load_dependencies();
 		$this->set_locale();
@@ -84,6 +84,10 @@ class wp_post_nav {
 	 * @access   private
 	 */
 	private function load_dependencies() {
+
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wppn-settings.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wppn-migrations.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wppn-customizer.php';
 
 		/**
 		 * The class responsible for orchestrating the actions and filters of the
@@ -140,6 +144,7 @@ class wp_post_nav {
 	private function define_admin_hooks() {
 
 		$plugin_admin = new wp_post_nav_Admin( $this->get_plugin_name(), $this->get_version() );
+		$plugin_customizer = new WPPN_Customizer();
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
@@ -152,6 +157,8 @@ class wp_post_nav {
 		$plugin_basename = plugin_basename( plugin_dir_path( __DIR__ ) . $this->plugin_name . '.php' );
                 //write_log($plugin_basename);
 		$this->loader->add_filter( 'plugin_action_links_' . $plugin_basename, $plugin_admin, 'add_action_links' );
+		$this->loader->add_action( 'customize_register', $plugin_customizer, 'register' );
+		$this->loader->add_action( 'customize_preview_init', $plugin_customizer, 'preview_init' );
 
 	}
 
@@ -226,9 +233,9 @@ class wp_post_nav {
 		$old_version			= get_option( 'wp_post_nav_version' );
 		
   	//check whats happened with the version.  if the option isnt defined (added in 1.0.0) then its either a major update, or a fresh install
-  	if (!$old_version) {
-    	$update_version = new wp_post_nav_Activator;
-    	$update_version->activate($current_version);
+		if ( version_compare( (string) $old_version, '2.1.0', '<' ) ) {
+			$update_version = new wp_post_nav_Activator;
+			$update_version->activate();
   	}
 
   	else {

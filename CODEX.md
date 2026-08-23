@@ -16,7 +16,7 @@ Development Workflow: Jo4nny8
 ## Branch model
 
 - `main` is the production branch and currently represents the official WordPress.org `2.0.3` baseline.
-- `develop` is the active development branch and currently contains the local `2.0.4` modernisation and development tooling.
+- `develop` is the active development branch and currently contains the local `2.1.0` Customizer settings migration and development tooling.
 - Use `feature/<name>` or `fix/<name>` branches from `develop` for isolated work.
 
 ## Commit model

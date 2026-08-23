@@ -132,6 +132,24 @@ if ( ! function_exists( 'absint' ) ) {
 	}
 }
 
+if ( ! function_exists( 'wp_parse_args' ) ) {
+	function wp_parse_args( $args, $defaults = array() ) {
+		return array_merge( $defaults, is_array( $args ) ? $args : array() );
+	}
+}
+
+if ( ! function_exists( 'sanitize_key' ) ) {
+	function sanitize_key( $key ) {
+		return preg_replace( '/[^a-z0-9_\-]/', '', strtolower( (string) $key ) );
+	}
+}
+
+if ( ! function_exists( 'esc_url_raw' ) ) {
+	function esc_url_raw( $url ) {
+		return filter_var( (string) $url, FILTER_SANITIZE_URL );
+	}
+}
+
 if ( ! function_exists( 'add_settings_error' ) ) {
 	function add_settings_error( $setting, $code, $message, $type = 'error' ) {
 		$GLOBALS['wppn_test_settings_errors'][] = compact( 'setting', 'code', 'message', 'type' );
@@ -171,6 +189,9 @@ if ( ! function_exists( 'plugin_basename' ) ) {
 	}
 }
 
+require_once dirname( __DIR__ ) . '/includes/class-wppn-settings.php';
+require_once dirname( __DIR__ ) . '/includes/class-wppn-migrations.php';
+require_once dirname( __DIR__ ) . '/includes/class-wppn-customizer.php';
 require_once dirname( __DIR__ ) . '/includes/class-wp-post-nav-activator.php';
 require_once dirname( __DIR__ ) . '/includes/class-wp-post-nav-deactivator.php';
 require_once dirname( __DIR__ ) . '/includes/class-wp-post-nav-loader.php';

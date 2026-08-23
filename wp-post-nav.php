@@ -11,7 +11,7 @@
  * Plugin Name:       WP Post Nav
  * Plugin URI:        https://en-gb.wordpress.org/plugins/wp-post-nav/
  * Description:       Wordpress Posts Navigation Plugin.  Navigate between posts, pages and custom post types with ease.
- * Version:           2.0.4
+ * Version:           2.1.0
  * Author:            jo4nny8
  * Author URI:        https://profiles.wordpress.org/jo4nny8/
  * License:           GPL-2.0+
@@ -26,6 +26,8 @@ if (!defined('ABSPATH') ) {
 }
 
 //Activation File
+require_once plugin_dir_path( __FILE__ ) . 'includes/class-wppn-settings.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/class-wppn-migrations.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/class-wp-post-nav-activator.php';
 
 //Deactiviation File

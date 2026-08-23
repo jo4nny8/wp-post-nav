@@ -9,22 +9,22 @@ final class AdminSettingsTest extends TestCase {
 	protected function setUp(): void {
 		$GLOBALS['wppn_test_options'] = array();
 		$GLOBALS['wppn_test_settings_errors'] = array();
-		$this->admin = new wp_post_nav_admin( 'wp-post-nav', '2.0.4' );
+		$this->admin = new wp_post_nav_admin( 'wp-post-nav', '2.1.0' );
 		$this->admin->init();
 	}
 
 	public function test_default_settings_are_created_when_missing(): void {
 		$options = $this->admin->get_options();
 
-		$this->assertSame( '', $options['wp_post_nav_show_title'] );
+		$this->assertSame( 'yes', $options['wp_post_nav_show_title'] );
 		$this->assertSame( '#8358b0', $options['wp_post_nav_background_color'] );
 	}
 
 	public function test_saved_settings_are_returned(): void {
 		$saved = array( 'wp_post_nav_show_title' => 'no' );
-		$GLOBALS['wppn_test_options']['wp_post_nav_options'] = $saved;
+		$GLOBALS['wppn_test_options']['wppn_settings'] = $saved;
 
-		$this->assertSame( $saved, $this->admin->get_options() );
+		$this->assertSame( 'no', $this->admin->get_options()['wp_post_nav_show_title'] );
 	}
 
 	public function test_valid_settings_are_preserved_and_unknown_settings_are_rejected(): void {
@@ -42,7 +42,7 @@ final class AdminSettingsTest extends TestCase {
 	}
 
 	public function test_invalid_numeric_and_colour_values_fall_back_to_saved_values(): void {
-		$GLOBALS['wppn_test_options']['wp_post_nav_options'] = array(
+		$GLOBALS['wppn_test_options']['wppn_settings'] = array(
 			'wp_post_nav_excerpt_length'   => '300',
 			'wp_post_nav_background_color' => '#8358b0',
 		);
@@ -65,6 +65,6 @@ final class AdminSettingsTest extends TestCase {
 		);
 
 		$this->assertSame( 'yes', $validated['wp_post_nav_show_title'] );
-		$this->assertArrayNotHasKey( 'wp_post_nav_show_category', $validated );
+		$this->assertSame( '', $validated['wp_post_nav_show_category'] );
 	}
 }

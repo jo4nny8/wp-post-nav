@@ -6,7 +6,7 @@ WP Post Nav now has a Composer-managed PHPUnit 10 framework. The repository cont
 
 Phase 3 adds a WordPress test-library bootstrap, reusable content factories, and integration tests for posts, pages, a test custom post type, attachments, shortcode output, empty navigation, and multiple shortcode calls. The current frontend markup contract is recorded in `FRONTEND-BASELINE.md`.
 
-The project also provides PHP syntax checks, PHPCS, PHPStan, and distribution package validation. PHPCS and PHPStan currently report legacy findings; those findings are recorded in `DEVELOPMENT-ASSESSMENT.md` and are not hidden by a baseline.
+The project also provides PHP syntax checks, PHPCS, PHPStan, and distribution package validation. PHPCS and PHPStan currently report legacy findings; those findings are recorded in `DEVELOPMENT-ASSESSMENT.md` and are not hidden by a baseline. Version 2.1.0 adds settings migration and Customizer compatibility coverage.
 
 ## Local MAMP Pro setup
 
@@ -87,3 +87,14 @@ The integration suite requires a MySQL database configured for the WordPress tes
 ## Future testing requirements
 
 Before architectural refactoring, add WordPress integration fixtures for every supported content type and public compatibility point. Add browser checks for rendered navigation and accessibility, then make the relevant PHPUnit, PHPCS, PHPStan, and package checks required for pull requests.
+
+## Version 2.1.0 settings and Customizer checks
+
+The unit suite covers the 2.0.4 to 2.1.0 migration, consolidated defaults, sanitisation, unknown-key rejection, legacy option cleanup and migration idempotence. In a real WordPress installation also verify:
+
+- existing settings remain unchanged after plugin upgrade;
+- the migration marker is present and old options are removed only after verification;
+- all seven Customizer sections load under Appearance → Customise;
+- colour, typography, image and visibility controls save and preview;
+- the legacy Settings → WP Post Nav page still saves through `wppn_settings`;
+- frontend navigation and shortcode output retain the documented selectors and structure.

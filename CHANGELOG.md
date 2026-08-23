@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-08-23T18:12:00Z — Version 2.1.0 Customizer settings migration
+
+- Added `WPPN_Settings` as the shared settings, sanitisation and compatibility layer.
+- Added `WPPN_Migrations` for a verified, idempotent migration from 2.0.4 to the `wppn_settings` option.
+- Added the WP Post Nav Customizer panel with General, Navigation, Layout, Colours, Typography, Images and Advanced sections.
+- Added live preview CSS variables for colours and typography while preserving existing selectors and markup.
+- Routed the existing Settings page and frontend settings getter through the new settings layer.
+- Added migration and settings compatibility tests, and documented upgrade behaviour in `README.md`, `README.txt`, `docs/DEVELOPMENT.md` and `docs/TESTING.md`.
+- Version updated to 2.1.0. Historical SVN tags remain unchanged.
+
 ## 2026-08-23T17:47:16Z — Phase 4A Customizer architecture and migration standards
 
 - Added `docs/CUSTOMIZER-AUDIT.md` documenting the current settings page, options, validation, frontend consumers, dynamic CSS, and compatibility risks.

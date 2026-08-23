@@ -16,4 +16,6 @@ if (!defined('WP_UNINSTALL_PLUGIN') || ! defined( 'ABSPATH' )) {
 
 //delete the array of options from the database	
 delete_option ('wp_post_nav_options');
+delete_option ('wppn_settings');
+delete_option ('wppn_migration_210_complete');
 delete_option ('wp_post_nav_version');  

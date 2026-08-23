@@ -47,7 +47,7 @@ class wp_post_nav_admin {
     $this->name = $name;
     $this->version = $version;
     $this->textdomain = 'wp_post_nav';
-    $this->option_name = $this->textdomain . '_options';
+    $this->option_name = 'wppn_settings';
 
     // Initialise settings
     add_action( 'admin_init', array( $this, 'init' ) );
@@ -516,20 +516,7 @@ class wp_post_nav_admin {
    * @return array Options, either saved or default ones.
    */
   public function get_options() {
-    $options = get_option($this->option_name);
-
-    if ( !$options && is_array( $this->settings ) ) {
-      $options = Array();
-      foreach( $this->settings as $section => $data ) {
-        foreach( $data['fields'] as $field ) {
-          $options[ $field['id'] ] = $field['default'];
-        }
-      }
-
-      add_option( $this->option_name, $options );
-    }
-
-    return $options;
+    return class_exists( 'WPPN_Settings' ) ? WPPN_Settings::get() : get_option( $this->option_name, array() );
   }
 
   /**
@@ -564,6 +551,23 @@ class wp_post_nav_admin {
    * @return array       Validated value
    */
   public function validate_fields( $data ) {
+	if ( class_exists( 'WPPN_Settings' ) ) {
+		$existing = WPPN_Settings::get();
+		$sanitised = WPPN_Settings::sanitize( $data );
+		$numeric = array( 'wp_post_nav_excerpt_length', 'wp_post_nav_nav_button_width', 'wp_post_nav_nav_button_height', 'wp_post_nav_title_size', 'wp_post_nav_excerpt_size', 'wp_post_nav_category_size', 'wp_post_nav_heading_size' );
+		$colours = array( 'wp_post_nav_background_color', 'wp_post_nav_open_background_color', 'wp_post_nav_heading_color', 'wp_post_nav_title_color', 'wp_post_nav_category_color', 'wp_post_nav_excerpt_color' );
+		foreach ( $data as $key => $value ) {
+			if ( in_array( $key, $numeric, true ) && ! is_numeric( $value ) ) {
+				$sanitised[ $key ] = $existing[ $key ];
+				add_settings_error( $this->name, 'invalid-value', __( 'The value must be numeric.', $this->textdomain ), 'error' );
+			}
+			if ( in_array( $key, $colours, true ) && ! sanitize_hex_color( $value ) ) {
+				$sanitised[ $key ] = $existing[ $key ];
+				add_settings_error( $this->name, 'invalid-colour', __( 'The colour is invalid.', $this->textdomain ), 'error' );
+			}
+		}
+		return $sanitised;
+	}
     //get the latest saved option in case validation fails and we need to re-add the correct values back
     $default_options = get_option( $this->option_name, array() );
 

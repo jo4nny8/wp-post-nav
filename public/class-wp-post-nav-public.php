@@ -83,7 +83,20 @@ class wp_post_nav_Public {
 		$nav_excerpt_colour = sanitize_hex_color( $settings['wp_post_nav_excerpt_color'] ?? '' ) ?: '#ffffff';
 		$nav_excerpt_size 	= absint( $settings['wp_post_nav_excerpt_size'] ?? 12 ) . 'px';
 
-		$nav_css = ".wp-post-nav #post-nav-previous-default,
+		$nav_css = ":root {
+					--wppn-background-color: $nav_background;
+					--wppn-open-background-color: $nav_open_background;
+					--wppn-heading-color: $nav_heading_colour;
+					--wppn-title-color: $nav_title_colour;
+					--wppn-category-color: $nav_category_colour;
+					--wppn-excerpt-color: $nav_excerpt_colour;
+					--wppn-heading-size: $nav_heading_size;
+					--wppn-title-size: $nav_font_size;
+					--wppn-category-size: $nav_category_size;
+					--wppn-excerpt-size: $nav_excerpt_size;
+				}
+
+				.wp-post-nav #post-nav-previous-default,
 								.wp-post-nav #post-nav-previous-switched {
 						    	background: $nav_background;
 								}
@@ -235,14 +248,32 @@ class wp_post_nav_Public {
 									color:$nav_title_colour;
 								}
 
-								.wp-post-nav-shortcode #attachment-post-nav-previous-default:after {
+				.wp-post-nav-shortcode #attachment-post-nav-previous-default:after {
 									background:$nav_background;
 									line-height: $nav_button_height;
 									width: $nav_button_width;
 									height: $nav_button_height;
 									right: $nav_button_offset;
 								}
-								";
+
+				.wp-post-nav #post-nav-previous-default,
+				.wp-post-nav #post-nav-previous-switched,
+				.wp-post-nav #post-nav-next-default,
+				.wp-post-nav #post-nav-next-switched,
+				.wp-post-nav-shortcode { background: var(--wppn-background-color); }
+				.wp-post-nav #post-nav-previous-default:hover,
+				.wp-post-nav #post-nav-previous-switched:hover,
+				.wp-post-nav #post-nav-next-default:hover,
+				.wp-post-nav #post-nav-next-switched:hover { background: var(--wppn-open-background-color); }
+				.wp-post-nav h4,
+				.wp-post-nav-shortcode h4 { color: var(--wppn-heading-color); font-size: var(--wppn-heading-size); }
+				.wp-post-nav .post-nav-title,
+				.wp-post-nav-shortcode .post-nav-title { color: var(--wppn-title-color); font-size: var(--wppn-title-size); }
+				.wp-post-nav .post-nav-category,
+				.wp-post-nav-shortcode .post-nav-category { color: var(--wppn-category-color); font-size: var(--wppn-category-size); }
+				.wp-post-nav .post-nav-excerpt,
+				.wp-post-nav-shortcode .post-nav-excerpt { color: var(--wppn-excerpt-color); font-size: var(--wppn-excerpt-size); }
+				";
 
 		wp_add_inline_style( $this->name, $nav_css );
 
@@ -265,9 +296,7 @@ class wp_post_nav_Public {
 
 	//get all the settings from the admin panel and build an array of the options
 	public function wp_post_nav_get_settings() {
-		$settings = get_option( 'wp_post_nav_options', array() );
-
-		return is_array( $settings ) ? $settings : array();
+		return class_exists( 'WPPN_Settings' ) ? WPPN_Settings::get() : get_option( 'wp_post_nav_options', array() );
 	}
 
 	//get the post categories for the current displayed post type
