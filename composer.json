@@ -22,6 +22,7 @@
     "lint:phpcs": "phpcs --standard=phpcs.xml.dist",
     "analyse": "phpstan analyse --debug --memory-limit=512M --configuration=phpstan.neon.dist",
     "test": "phpunit --configuration tests/phpunit.xml",
+    "test:integration": "phpunit --configuration tests/phpunit-integration.xml",
     "build": "sh bin/build-package.sh"
   }
 }
