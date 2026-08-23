@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-08-23T13:20:59Z — Jo4nny8 workflow migration audit
+
+- Added `AGENTS.md`, `CODEX.md`, and `docs/DEVELOPMENT.md` with project conventions and development workflow guidance.
+- Added `docs/STANDARDS-AUDIT.md` covering coding, WordPress, frontend, documentation, compatibility, and release standards.
+- Added `docs/MIGRATION-PLAN.md` with staged maintenance, architecture, and future-feature phases.
+- Confirmed that no plugin functionality or existing public interfaces were changed during this audit.
+
 ## 2026-08-23T09:48:47Z — British English standardisation
 
 - Standardised maintained comments, documentation, changelog prose, and user-facing text to British English.
