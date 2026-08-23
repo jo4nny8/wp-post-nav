@@ -565,7 +565,18 @@ class wp_post_nav_admin {
    */
   public function validate_fields( $data ) {
     //get the latest saved option in case validation fails and we need to re-add the correct values back
-    $default_options = get_option($this->option_name);
+    $default_options = get_option( $this->option_name, array() );
+
+    $allowed_keys = array();
+    foreach ( $this->settings as $section ) {
+      if ( empty( $section['fields'] ) || ! is_array( $section['fields'] ) ) {
+        continue;
+      }
+      foreach ( $section['fields'] as $field ) {
+        $allowed_keys[] = $field['id'];
+      }
+    }
+    $data = array_intersect_key( $data, array_flip( $allowed_keys ) );
     
     //Throw an info message if they havent selected any post types
     $settings_errors = [];
@@ -623,6 +634,7 @@ class wp_post_nav_admin {
         case 'wp_post_nav_title_size':
         case 'wp_post_nav_excerpt_size':
         case 'wp_post_nav_category_size':
+        case 'wp_post_nav_heading_size':
           // check the new value, if its not numeric
           if (!is_numeric($validation)){
               $error_message = str_replace("wp_post_nav_",' ',$key);
@@ -641,7 +653,8 @@ class wp_post_nav_admin {
         break;
 
         case 'wp_post_nav_background_color':
-        case 'wp_post_nav_open_background_color]':
+        case 'wp_post_nav_open_background_color':
+        case 'wp_post_nav_heading_color':
         case 'wp_post_nav_title_color':
         case 'wp_post_nav_category_color':
         case 'wp_post_nav_excerpt_color':
@@ -662,7 +675,7 @@ class wp_post_nav_admin {
 
           else {
             //the value is allowed so set it
-            $data[$key] = $validation;  
+            $data[$key] = sanitize_hex_color( $validation );
           }
         break;
 

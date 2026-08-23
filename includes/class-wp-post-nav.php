@@ -57,7 +57,7 @@ class wp_post_nav {
 	public function __construct() {
 
 		$this->plugin_name = 'wp-post-nav';
-		$this->version = '2.0.3';
+		$this->version = '2.0.4';
 
 		$this->load_dependencies();
 		$this->set_locale();
@@ -236,7 +236,7 @@ class wp_post_nav {
   		
   		//versions dont match, update the option in the database
   		if (!$version_check) {
-  			update_option ($old_version, $current_version);
+			update_option( 'wp_post_nav_version', $current_version );
   		}
   	}
   	if( get_transient( 'wp-post-nav' ) ){
@@ -247,7 +247,7 @@ class wp_post_nav {
             </div>
             <?php  
         });
-        //delete_transient( 'wp-post-nav' );
+		delete_transient( 'wp-post-nav' );
     	}
 	}
 }

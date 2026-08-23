@@ -96,7 +96,7 @@ else {
 					$previous_post_category = 
                              		'<li class="post-nav-category">'.
 	                                    __('Category: ', 'wp-post-nav') 
-                                      .'<strong>' . $previous_category. '</strong>'.
+                                      .'<strong>' . $next_category. '</strong>'.
 		                            '</li>';
             	break;
 		        default:

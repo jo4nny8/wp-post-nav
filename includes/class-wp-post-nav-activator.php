@@ -25,7 +25,7 @@ class wp_post_nav_Activator {
 	 * @since    0.0.1
 	 */
 	public static function activate() {
-      $current_version = '2.0.3';
+      $current_version = '2.0.4';
 
 		  //first see if any of the old options exist in the database (therefore and old version upgrade)
       $defaults = [];
@@ -109,4 +109,3 @@ class wp_post_nav_Activator {
       }
 	}
 }
-

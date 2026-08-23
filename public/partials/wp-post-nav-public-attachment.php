@@ -30,10 +30,9 @@ echo '<nav class="wp-post-nav" role="navigation">';
 	$prev_link = previous_post_link( 
 			'%link', 
 			'<ul id="attachment-post-nav-previous'.$switch_nav.'">'
-			.__( '<li id="wp-prev-nav">' . ___('Return To Post', 'wp-post-nav') .'</li>' )
+			. '<li id="wp-prev-nav">' . esc_html__( 'Return To Post', 'wp-post-nav' ) . '</li>'
 			.'<span id="post-nav-previous-button"></span></ul>'
 			, false, '' );
         
      echo $prev_link;           
 echo '</nav>'; 
-

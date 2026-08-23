@@ -76,9 +76,9 @@ if ($yoast_primary == 'yes') {
 }
 
 //allow using seo frameowrk primary term
-if (function_exists( 'the_seo_framework' )) {
+if ( $seo_framework === 'yes' && function_exists( 'the_seo_framework' ) ) {
   $primary_term = the_seo_framework()->get_primary_term( $post_id, $term );
-  if ( empty( $primary_term ) ) {
+  if ( ! empty( $primary_term ) && is_object( $primary_term ) ) {
     $excluded_terms = get_terms( array(
         'taxonomy' => $primary_term->taxonomy,
         'hide_empty' => false,
@@ -88,9 +88,7 @@ if (function_exists( 'the_seo_framework' )) {
     switch ( $exclude_primary ) {
       case 'yes':
         if ($previous) {
-          $prev_wpseo_primary_term = new WPSEO_Primary_Term($category, $previous->ID );
-          $prev_wpseo_primary_term = $prev_wpseo_primary_term->get_primary_term();
-          $prev_primary_term = get_term( $prev_wpseo_primary_term );
+          $prev_primary_term = the_seo_framework()->get_primary_term( $previous->ID, $term );
           
           //if no primary term assigned, or its not the same, exit
           if ( empty( $primary_term ) || $prev_primary_term != $primary_term) {
@@ -99,9 +97,7 @@ if (function_exists( 'the_seo_framework' )) {
         }
 
         if ($next) {
-          $next_wpseo_primary_term = new WPSEO_Primary_Term($category, $next->ID );
-          $next_wpseo_primary_term = $next_wpseo_primary_term->get_primary_term();
-          $next_primary_term = get_term( $next_wpseo_primary_term );
+          $next_primary_term = the_seo_framework()->get_primary_term( $next->ID, $term );
 
           //if no primary term assigned, or its not the same, exit
           if ( empty( $primary_term ) || $next_primary_term != $primary_term) {

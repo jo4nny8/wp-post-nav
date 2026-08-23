@@ -67,21 +67,21 @@ class wp_post_nav_Public {
 		wp_enqueue_style( $this->name, plugin_dir_url( __FILE__ ) . 'css/wp-post-nav-public.css', array(), $this->version, 'all' );
 		$settings = $this->wp_post_nav_get_settings();
 
-		$nav_background     = $settings['wp_post_nav_background_color'];
-		$nav_button_width   = $settings['wp_post_nav_nav_button_width'].'px';
-		$nav_button_height  = $settings['wp_post_nav_nav_button_height'].'px';
+		$nav_background     = sanitize_hex_color( $settings['wp_post_nav_background_color'] ?? '' ) ?: '#8358b0';
+		$nav_button_width   = absint( $settings['wp_post_nav_nav_button_width'] ?? 70 ) . 'px';
+		$nav_button_height  = absint( $settings['wp_post_nav_nav_button_height'] ?? 100 ) . 'px';
 		$nav_button_offset  = '-'.$nav_button_width;
 
-		$nav_open_background= $settings['wp_post_nav_open_background_color'];
+		$nav_open_background= sanitize_hex_color( $settings['wp_post_nav_open_background_color'] ?? '' ) ?: $nav_background;
 
-		$nav_heading_colour = $settings['wp_post_nav_heading_color'];
-		$nav_heading_size   = $settings['wp_post_nav_heading_size'] . 'px';
-		$nav_title_colour   = $settings['wp_post_nav_title_color'];
-		$nav_font_size      = $settings['wp_post_nav_title_size'] . 'px';
-		$nav_category_colour= $settings['wp_post_nav_category_color'];
-		$nav_category_size  = $settings['wp_post_nav_category_size'] . 'px';
-		$nav_excerpt_colour = $settings['wp_post_nav_excerpt_color'];
-		$nav_excerpt_size 	= $settings['wp_post_nav_excerpt_size'] . 'px';
+		$nav_heading_colour = sanitize_hex_color( $settings['wp_post_nav_heading_color'] ?? '' ) ?: '#ffffff';
+		$nav_heading_size   = absint( $settings['wp_post_nav_heading_size'] ?? 20 ) . 'px';
+		$nav_title_colour   = sanitize_hex_color( $settings['wp_post_nav_title_color'] ?? '' ) ?: '#ffffff';
+		$nav_font_size      = absint( $settings['wp_post_nav_title_size'] ?? 13 ) . 'px';
+		$nav_category_colour= sanitize_hex_color( $settings['wp_post_nav_category_color'] ?? '' ) ?: '#ffffff';
+		$nav_category_size  = absint( $settings['wp_post_nav_category_size'] ?? 13 ) . 'px';
+		$nav_excerpt_colour = sanitize_hex_color( $settings['wp_post_nav_excerpt_color'] ?? '' ) ?: '#ffffff';
+		$nav_excerpt_size 	= absint( $settings['wp_post_nav_excerpt_size'] ?? 12 ) . 'px';
 
 		$nav_css = ".wp-post-nav #post-nav-previous-default,
 								.wp-post-nav #post-nav-previous-switched {
@@ -265,13 +265,17 @@ class wp_post_nav_Public {
 
 	//get all the settings from the admin panel and build an array of the options
 	public function wp_post_nav_get_settings() {
-	  $settings = get_option ('wp_post_nav_options');
-    return $settings;
+		$settings = get_option( 'wp_post_nav_options', array() );
+
+		return is_array( $settings ) ? $settings : array();
 	}
 
 	//get the post categories for the current displayed post type
 	public function get_post_categories() {
 		$category =  get_queried_object();
+		if ( ! $category instanceof WP_Post ) {
+			return false;
+		}
     $category_post_type = $category->post_type;
     $taxonomies = get_object_taxonomies($category_post_type);
 
@@ -302,9 +306,10 @@ class wp_post_nav_Public {
 	public function wp_post_nav_excerpt($id) {
 		$settings = $this->wp_post_nav_get_settings();
 			
-			if (array_key_exists('wp_post_nav_excerpt_length', $settings)) {
-		    $excerpt_length = $settings['wp_post_nav_excerpt_length'];    
-		  }
+		$excerpt_length = absint( $settings['wp_post_nav_excerpt_length'] ?? 300 );
+		if ( $excerpt_length < 1 ) {
+			$excerpt_length = 300;
+		}
 
 		  //allow devcelopers to override how this is done
 		  $over_ride = true;
@@ -316,9 +321,7 @@ class wp_post_nav_Public {
 		    $content = get_post($id);
 				$excerpt = $content->post_content;
 				$excerpt = strip_tags($excerpt);
-				$excerpt = substr($excerpt, 0, $excerpt_length);
-				$excerpt = substr($excerpt, 0, strripos($excerpt, " "));
-				$excerpt = $excerpt;
+				$excerpt = wp_trim_words( $excerpt, $excerpt_length, '…' );
 			}
 
 			//use wordpress default built in post excerpt function
@@ -326,7 +329,7 @@ class wp_post_nav_Public {
 				$excerpt = get_the_excerpt($id);
 			}
 
-		return $excerpt;
+		return esc_html( $excerpt );
 	}
 
 	//the main call to make the WP Post Nav display
@@ -334,7 +337,7 @@ class wp_post_nav_Public {
     
     $settings = $this->wp_post_nav_get_settings();
 
-    if (array_key_exists('wp_post_nav_shortcode', $settings)) {
+    if ( ! empty( $settings['wp_post_nav_shortcode'] ) ) {
 			return;
     }
     elseif (array_key_exists('wp_post_nav_post_types', $settings)) {
@@ -344,54 +347,52 @@ class wp_post_nav_Public {
 	  	return;
 	  }
 	  
-		if (array_key_exists('wp_post_nav_same_category', $settings)) {
+		if ( ! empty( $settings['wp_post_nav_same_category'] ) ) {
 			$same_category = 'yes';  
     }
     else {
     	$same_category = 'no';
     }
 		
-		if (array_key_exists('wp_post_nav_switch_nav', $settings)) {
+		if ( ! empty( $settings['wp_post_nav_switch_nav'] ) ) {
 			$switch_nav = '-switched';   
     }
     else {
     	$switch_nav = '-default';
     }
 
-		if (array_key_exists('wp_post_nav_show_title', $settings)) {
+		if ( ! empty( $settings['wp_post_nav_show_title'] ) ) {
 			$show_title = 'yes';  
     }
     else {
     	$show_title = 'no';
     }
 		
-		if (array_key_exists('wp_post_nav_show_category', $settings)) {
+		if ( ! empty( $settings['wp_post_nav_show_category'] ) ) {
 			$show_category = 'yes';  
     }
     else {
     	$show_category = 'no';
     }
 
-		if (array_key_exists('wp_post_nav_show_post_excerpt', $settings)) {
+		if ( ! empty( $settings['wp_post_nav_show_post_excerpt'] ) ) {
 			$show_excerpt = 'yes';    
     }
     else {
     	$show_excerpt = 'no';
     }
 
-		if (array_key_exists('wp_post_nav_show_featured_image', $settings)) {
+		if ( ! empty( $settings['wp_post_nav_show_featured_image'] ) ) {
 			$show_featured = 'yes'; 
     }
     else {
     	$show_featured = 'no';
     }
 
-		if (array_key_exists('wp_post_nav_fallback_image', $settings)) {
-			$fallback = $settings["wp_post_nav_fallback_image"];
-		}
+		$fallback = esc_url( $settings['wp_post_nav_fallback_image'] ?? plugin_dir_url( __FILE__ ) . 'images/default_fallback.png' );
 
 		//add in the additional options for yoast and woocommerce
-		if ( class_exists('WPSEO_Primary_Term') && array_key_exists('wp_post_nav_yoast_seo', $settings)) {
+			if ( class_exists( 'WPSEO_Primary_Term' ) && ! empty( $settings['wp_post_nav_yoast_seo'] ) ) {
 			$yoast_primary = 'yes';
 		}
 		else {
@@ -399,21 +400,21 @@ class wp_post_nav_Public {
 		}
 
 		//add additional option for seo framework
-		if (function_exists( 'the_seo_framework' ) && array_key_exists('wp_post_nav_seo_framework', $settings)) {
+			if ( function_exists( 'the_seo_framework' ) && ! empty( $settings['wp_post_nav_seo_framework'] ) ) {
 			$seo_framework = 'yes';
 		}
 		else {
 			$seo_framework = 'no';
 		}
 
-		if (class_exists('WPSEO_Primary_Term') && array_key_exists('wp_post_nav_exclude_primary', $settings) || function_exists( 'the_seo_framework' ) && array_key_exists('wp_post_nav_exclude_primary', $settings)) {
+			if ( ( class_exists( 'WPSEO_Primary_Term' ) || function_exists( 'the_seo_framework' ) ) && ! empty( $settings['wp_post_nav_exclude_primary'] ) ) {
 			$exclude_primary = 'yes';
 		}
 		else {
 			$exclude_primary = 'no';
 		}
 
-		if (array_key_exists('wp_post_nav_out_of_stock', $settings) && 'product' == get_post_type()) {
+			if ( ! empty( $settings['wp_post_nav_out_of_stock'] ) && 'product' === get_post_type() ) {
 			//add the product filter for out of stock products, only if its not already loaded
 		  if ( !has_filter( 'get_previous_post_where', array ($this,'wppostnav_outofstock' )) ) {
 		  	add_filter( 'get_previous_post_where', array($this,'wppostnav_outofstock' ));
@@ -426,7 +427,7 @@ class wp_post_nav_Public {
 		}
 
     //If there are no post types selected or were not on a singular post type page were allowing, exit.  Also exclude home page and blog pages and all archives
-    if (!$post_types || !in_array(is_singular($post_types), $post_types) || is_home() || is_front_page() || is_post_type_archive()) {
+    if ( empty( $post_types ) || ! is_singular( $post_types ) || is_home() || is_front_page() || is_post_type_archive() ) {
       return;
     }
 
@@ -529,7 +530,7 @@ class wp_post_nav_Public {
 		}
 
 		//add in the additional options for yoast and woocommerce
-		if (array_key_exists('wp_post_nav_yoast_seo', $settings)) {
+		if ( ! empty( $settings['wp_post_nav_yoast_seo'] ) ) {
 			$yoast_primary = 'yes';
 		}
 		else {
@@ -537,21 +538,21 @@ class wp_post_nav_Public {
 		}
 
 		//add additional option for seo framework
-		if (array_key_exists('wp_post_nav_seo_framework', $settings)) {
+		if ( ! empty( $settings['wp_post_nav_seo_framework'] ) ) {
 			$seo_framework = 'yes';
 		}
 		else {
 			$seo_framework = 'no';
 		}
 
-		if (array_key_exists('wp_post_nav_exclude_primary', $settings)) {
+		if ( ! empty( $settings['wp_post_nav_exclude_primary'] ) ) {
 			$exclude_primary = 'yes';
 		}
 		else {
 			$exclude_primary = 'no';
 		}
 
-		if (array_key_exists('wp_post_nav_out_of_stock', $settings) && 'product' == get_post_type()) {
+		if ( ! empty( $settings['wp_post_nav_out_of_stock'] ) && 'product' === get_post_type() ) {
 			//add the product filter for out of stock products, only if its not already loaded
 		  if ( !has_filter( 'get_previous_post_where', array ($this,'wppostnav_outofstock' )) ) {
 		  	add_filter( 'get_previous_post_where', array($this,'wppostnav_outofstock' ));
@@ -663,7 +664,8 @@ class wp_post_nav_Public {
 
 		//if there arent any next AND previous posts, leave.
 		if ( !$previous && !$next) {
-		    return;
+		    ob_end_clean();
+		    return '';
 		}
 
 		//We have posts - lets do this
