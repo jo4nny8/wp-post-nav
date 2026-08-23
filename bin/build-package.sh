@@ -22,6 +22,10 @@ rsync -a \
   --exclude 'phpcs.xml.dist' \
   --exclude 'phpstan.neon.dist' \
   --exclude '.gitignore' \
+  --exclude 'AGENTS.md' \
+  --exclude 'CODEX.md' \
+  --exclude 'docs/' \
+  --exclude 'tests/' \
   --exclude 'DEVELOPMENT-ASSESSMENT.md' \
   --exclude 'REPOSITORY-COMPARISON.md' \
   --exclude '*.zip' \

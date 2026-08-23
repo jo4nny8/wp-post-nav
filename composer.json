@@ -13,13 +13,15 @@
     "phpcompatibility/php-compatibility": "^9.0",
     "php-stubs/wordpress-stubs": "^6.8",
     "phpstan/phpstan": "^2.0",
+    "phpunit/phpunit": "^10.5",
     "squizlabs/php_codesniffer": "^3.10",
     "wp-coding-standards/wpcs": "^3.1"
   },
   "scripts": {
     "lint:php": "find . -path ./vendor -prune -o -name '*.php' -print0 | xargs -0 -n1 php -l",
     "lint:phpcs": "phpcs --standard=phpcs.xml.dist",
-    "analyse": "phpstan analyse --memory-limit=512M --configuration=phpstan.neon.dist",
+    "analyse": "phpstan analyse --debug --memory-limit=512M --configuration=phpstan.neon.dist",
+    "test": "phpunit --configuration tests/phpunit.xml",
     "build": "sh bin/build-package.sh"
   }
 }
