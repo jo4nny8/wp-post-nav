@@ -11,6 +11,37 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
+ * Displays the existing post-type array as newline-separated Customizer text.
+ *
+ * The stored setting must remain an array for compatibility, while the core
+ * textarea control requires a string value when it renders.
+ */
+if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'WPPN_Customizer_Post_Types_Control' ) ) {
+	class WPPN_Customizer_Post_Types_Control extends WP_Customize_Control {
+		/**
+		 * Render the post-type input without changing its stored format.
+		 *
+		 * @return void
+		 */
+		public function render_content() {
+			$value = $this->value();
+			$value = is_array( $value ) ? implode( "\n", array_keys( $value ) ) : (string) $value;
+			?>
+			<label>
+				<?php if ( ! empty( $this->label ) ) : ?>
+					<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
+				<?php endif; ?>
+				<?php if ( ! empty( $this->description ) ) : ?>
+					<span class="description customize-control-description"><?php echo esc_html( $this->description ); ?></span>
+				<?php endif; ?>
+				<textarea class="widefat" rows="4" <?php $this->input_attrs(); ?>><?php echo esc_textarea( $value ); ?></textarea>
+			</label>
+			<?php
+		}
+	}
+}
+
+/**
  * Registers the preferred visual settings interface while retaining legacy keys.
  */
 class WPPN_Customizer {
@@ -104,7 +135,12 @@ class WPPN_Customizer {
 			$value = implode( "\n", array_keys( WPPN_Settings::get()[ $key ] ) );
 				$control['input_attrs'] = array( 'rows' => 4 );
 			}
-			$wp_customize->add_control( $setting_id, array_merge( $control, array( 'settings' => $setting_id, 'section' => 'wppn_' . $control['section'], 'value' => $value ) ) );
+			$control_args = array_merge( $control, array( 'settings' => $setting_id, 'section' => 'wppn_' . $control['section'], 'value' => $value ) );
+			if ( 'wp_post_nav_post_types' === $key && class_exists( 'WPPN_Customizer_Post_Types_Control' ) ) {
+				$wp_customize->add_control( new WPPN_Customizer_Post_Types_Control( $wp_customize, $setting_id, $control_args ) );
+			} else {
+				$wp_customize->add_control( $setting_id, $control_args );
+			}
 		}
 	}
 

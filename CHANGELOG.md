@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-08-23T18:43:00Z — Fix Customizer post-type control fatal
+
+- Fixed the Customizer post-type control fatal caused by passing the compatible post-type array directly to WordPress’s string textarea renderer.
+- Added a dedicated control that displays post types as newline-separated text while retaining the existing array storage format.
+- Confirmed the PHP 8.2/8.3 dynamic-property notices and WooCommerce null-offset notices are separate issues and remain unchanged.
+
 ## 2026-08-23T18:31:00Z — Fix Customizer registration lifecycle
 
 - Registered the WP Post Nav Customizer hooks directly when `WPPN_Customizer` is constructed.
