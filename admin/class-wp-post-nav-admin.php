@@ -36,6 +36,34 @@ class wp_post_nav_admin {
   private $version;
 
   /**
+   * Translation domain used by the administration interface.
+   *
+   * @var string
+   */
+  private $textdomain;
+
+  /**
+   * WordPress option name used to store plugin settings.
+   *
+   * @var string
+   */
+  private $option_name;
+
+  /**
+   * Settings schema registered by the administration interface.
+   *
+   * @var array
+   */
+  private $settings = array();
+
+  /**
+   * Current saved plugin options.
+   *
+   * @var array
+   */
+  private $options = array();
+
+  /**
    * Initialise the class and set its properties.
    *
    * @since    0.0.1

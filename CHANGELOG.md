@@ -1,5 +1,17 @@
 # Changelog
 
+## 2026-08-30T23:01:47+01:00 — Declare legacy runtime properties
+
+- Declared the core plugin name and administration state properties that were
+  previously created dynamically at runtime.
+- Removed PHP 8.2+ dynamic-property deprecation warnings without changing
+  stored settings, public APIs, hooks or rendering behaviour.
+- Verified against the updated `plugins.test` WordPress 7.1 environment.
+- Tests completed: PHP syntax, 16 unit tests with 47 assertions, package ZIP
+  validation, runtime loading and secret scan.
+- Known limitation: PHPStan still reports 30 pre-existing legacy findings,
+  including the separately documented duplicate shortcode bootstrap file.
+
 ## 2026-08-23T19:18:00Z — Improve Customizer guidance and safe controls
 
 - Clarified that excerpt length is measured in words.

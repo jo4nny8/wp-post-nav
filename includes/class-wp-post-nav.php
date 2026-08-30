@@ -32,9 +32,9 @@ class wp_post_nav {
 	 *
 	 * @since    0.0.1
 	 * @access   protected
-	 * @var      string    $wp_post_nav    The string used to uniquely identify this plugin.
+	 * @var      string    $plugin_name    The string used to uniquely identify this plugin.
 	 */
-	protected $wp_post_nav;
+	protected $plugin_name;
 
 	/**
 	 * The current version of the plugin.
