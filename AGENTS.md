@@ -1,5 +1,7 @@
 # WP Post Nav agent guidance
 
+Read `PROJECT_HANDOVER.md` at the start of every task.
+
 ## Project definition
 
 - Project: WP Post Nav

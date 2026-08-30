@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-08-30T23:26:24+01:00 - Add project handover
+
+- Added the canonical repository, branch, runtime and NAS reference map.
+- Added a repeatable task startup and completion checklist for Codex work.
+- Testing completed: documentation review and `git diff --check`.
+- Known limitations remain unchanged.
+
 ## 2026-08-30T23:01:47+01:00 — Declare legacy runtime properties
 
 - Declared the core plugin name and administration state properties that were
