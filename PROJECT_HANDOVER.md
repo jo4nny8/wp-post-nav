@@ -15,7 +15,7 @@ Updated: 2026-08-30T23:26:24+01:00
 
 ## Start every task
 
-1. Read `AGENTS.md`, `CODEX.md` and this handover.
+1. Read `AGENTS.md`, `CODEX.md`, `ROADMAP.md` and this handover.
 2. Check the working tree and preserve unrelated changes.
 3. Fetch GitHub and confirm work starts from the correct branch.
 4. Review `CHANGELOG.md` and the relevant document under `docs/`.

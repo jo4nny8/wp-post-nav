@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-08-31T15:18:32+01:00 - Add project roadmap
+
+- Added the canonical project roadmap and linked it from the agent, handover and
+  README entry points.
+- Recorded static-analysis, WordPress 7.1 validation and release-candidate work
+  without changing plugin behaviour or publication state.
+- Testing completed: documentation/state review, diff check and focused secret
+  scan.
+
 ## 2026-08-30T23:26:24+01:00 - Add project handover
 
 - Added the canonical repository, branch, runtime and NAS reference map.

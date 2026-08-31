@@ -1,6 +1,8 @@
 # WP Post Nav agent guidance
 
-Read `PROJECT_HANDOVER.md` at the start of every task.
+Read `PROJECT_HANDOVER.md` and `ROADMAP.md` at the start of every task. Update
+the roadmap when priorities or material ideas change; an item under `Ideas` is
+not approval to implement or publish it.
 
 ## Project definition
 

@@ -11,3 +11,4 @@ Version 2.1.0 stores validated settings in `wppn_settings`. On upgrade from 2.0.
 ## Development
 
 See [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md) and [docs/TESTING.md](docs/TESTING.md) for the development workflow and validation commands.
+See [ROADMAP.md](ROADMAP.md) for the current maintenance and release sequence.
