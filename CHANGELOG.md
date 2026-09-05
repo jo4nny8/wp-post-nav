@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-09-05T16:29:47+01:00 - Enable WordPress integration testing
+
+- Added PHPUnit Polyfills and aligned the Composer test runner with the
+  PHPUnit version required by the WordPress integration suite.
+- Loaded the Polyfills dependency from the plugin integration bootstrap.
+- Corrected integration fixtures for WordPress's empty adjacent-post return
+  value and isolated single-post shortcode behaviour.
+- Verified against the `plugins.test` WordPress 7.1 installation using the
+  dedicated `wppn_tests_` table prefix: 11 tests, 19 assertions and 3 skips.
+
 ## 2026-09-05T16:18:26+01:00 - Prepare release validation tooling
 
 - Excluded Git metadata and internal development documents from the

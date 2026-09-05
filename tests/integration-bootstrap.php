@@ -1,5 +1,11 @@
 <?php
 
+$polyfills_autoloader = dirname( __DIR__ ) . '/vendor/yoast/phpunit-polyfills/phpunitpolyfills-autoload.php';
+
+if ( file_exists( $polyfills_autoloader ) ) {
+	require_once $polyfills_autoloader;
+}
+
 $wordpress_tests_dir = getenv( 'WP_TESTS_DIR' );
 
 if ( $wordpress_tests_dir && file_exists( $wordpress_tests_dir . '/includes/functions.php' ) ) {

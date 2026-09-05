@@ -35,12 +35,12 @@ if ( class_exists( 'WP_UnitTestCase' ) ) {
 
 		public function test_first_and_last_posts_have_one_empty_navigation_direction(): void {
 			$this->go_to( get_permalink( self::$posts['first'] ) );
-			$this->assertNull( get_adjacent_post( false, array(), true ) );
+			$this->assertSame( '', get_adjacent_post( false, array(), true ) );
 			$this->assertSame( self::$posts['middle'], get_adjacent_post( false, array(), false )->ID );
 
 			$this->go_to( get_permalink( self::$posts['last'] ) );
 			$this->assertSame( self::$posts['middle'], get_adjacent_post( false, array(), true )->ID );
-			$this->assertNull( get_adjacent_post( false, array(), false ) );
+			$this->assertSame( '', get_adjacent_post( false, array(), false ) );
 		}
 
 		public function test_shortcode_renders_previous_and_next_post_markup(): void {
@@ -64,7 +64,13 @@ if ( class_exists( 'WP_UnitTestCase' ) ) {
 		}
 
 		public function test_shortcode_returns_empty_for_a_post_without_adjacent_posts(): void {
-			$single = WPPN_Test_Content_Factory::post( 'WPPN Single Post', '2025-01-01 10:00:00', self::$category_id );
+			$single = wp_insert_post(
+				array(
+					'post_title'  => 'WPPN Single Post',
+					'post_status' => 'publish',
+					'post_date'   => '2025-01-01 10:00:00',
+				)
+			);
 			$this->go_to( get_permalink( $single ) );
 
 			$this->assertSame( '', do_shortcode( '[wp_post_nav]' ) );
