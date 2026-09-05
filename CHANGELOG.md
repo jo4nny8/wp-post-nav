@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-09-05T16:18:26+01:00 - Prepare release validation tooling
+
+- Excluded Git metadata and internal development documents from the
+  WordPress.org distribution package.
+- Increased the PHPStan analysis memory limit so the project analysis command
+  completes and reports its existing legacy findings.
+- Validation completed: Composer validation, PHP syntax lint, 16 PHPUnit tests
+  with 47 assertions, package ZIP integrity and `git diff --check`.
+- WordPress integration testing remains dependent on the local MAMP database
+  service and an isolated test database.
+
 ## 2026-08-31T15:18:32+01:00 - Add project roadmap
 
 - Added the canonical project roadmap and linked it from the agent, handover and
