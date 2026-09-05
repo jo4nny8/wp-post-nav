@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-09-05T16:45:00+01:00 - Keep public metadata at production release
+
+- Restored `README.txt` metadata and public changelog scope to the published
+  WordPress.org 2.0.3 release.
+- Kept unreleased 2.0.4 and 2.1.0 work exclusively in the internal
+  development history.
+
 ## 2026-09-05T16:40:27+01:00 - Separate public and internal changelog scope
 
 - Kept `README.txt` limited to concise production release notes for the

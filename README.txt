@@ -2,8 +2,8 @@
 Contributors: jo4nny8
 Tags: post navigation, navigation, product navigation, post nav, custom post navigation, previous nav, next nav
 Requires at least: 6.0
-Tested up to: 7.1
-Stable tag: 2.1.0
+Tested up to: 6.3
+Stable tag: 2.0.3
 Requires PHP: 8.0
 Text Domain: wp-post-nav
 Domain Path: /languages
@@ -84,23 +84,17 @@ Drop a question in the plugin support option above or email me @ contact@wppostn
 
 == Changelog ==
 
-= 2.1.0 =
-Added the WP Post Nav Customizer interface with live styling preview. Added the consolidated settings option and a verified migration from 2.0.4 settings. The existing Settings page and public compatibility interfaces remain available.
-
-= 2.0.4 =
-Maintenance release. Fixed automatic navigation detection, shortcode mode handling, activation/deactivation registration, version migration, attachment navigation, SEO Framework compatibility, PHP 8 safety, excerpt handling, dynamic CSS validation, and settings validation.
-
 = 2.0.3 =
-Compatibility with WordPress 6.3
+Compatability with WordPress 6.3
 
 = 2.0.2 =
-Compatibility with PHP 8
-Compatibility with WordPress 6.1.1
+Compatability with PHP 8
+Compatability with WordPress 6.1.1
 Minor changes in the admin side of the plugin (textual interface changes and wording)
 
 = 2.0.1 =
 Fixed an issue with Yoast SEO compatibility
-Confirmed WordPress 5.7 compatibility
+Confirmed WordPress 5.7 compatability
 
 = 2.0.0 =
 Warning, this is a major update. You should create a full backup of your site prior to upgrading.
