@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-09-05T16:40:27+01:00 - Separate public and internal changelog scope
+
+- Kept `README.txt` limited to concise production release notes for the
+  WordPress.org listing.
+- Moved development, testing and release-process detail to `CHANGELOG.md` and
+  the project documentation.
+- Updated the public compatibility marker to WordPress 7.1 after staging
+  validation.
+
 ## 2026-09-05T16:29:47+01:00 - Enable WordPress integration testing
 
 - Added PHPUnit Polyfills and aligned the Composer test runner with the
