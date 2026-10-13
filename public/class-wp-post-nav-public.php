@@ -299,6 +299,18 @@ class wp_post_nav_Public {
 		return class_exists( 'WPPN_Settings' ) ? WPPN_Settings::get() : get_option( 'wp_post_nav_options', array() );
 	}
 
+	/**
+	 * Return the escaped fallback image URL, using the bundled default image
+	 * when no custom fallback has been saved (as the settings screens state).
+	 *
+	 * @param array $settings Current plugin settings.
+	 * @return string
+	 */
+	private function wppn_get_fallback_image_url( $settings ) {
+		$fallback = ! empty( $settings['wp_post_nav_fallback_image'] ) ? $settings['wp_post_nav_fallback_image'] : plugin_dir_url( __FILE__ ) . 'images/default_fallback.png';
+		return esc_url( $fallback );
+	}
+
 	//get the post categories for the current displayed post type
 	public function get_post_categories() {
 		$category =  get_queried_object();
@@ -418,7 +430,7 @@ class wp_post_nav_Public {
     	$show_featured = 'no';
     }
 
-		$fallback = esc_url( $settings['wp_post_nav_fallback_image'] ?? plugin_dir_url( __FILE__ ) . 'images/default_fallback.png' );
+		$fallback = $this->wppn_get_fallback_image_url( $settings );
 
 		//add in the additional options for yoast and woocommerce
 			if ( class_exists( 'WPSEO_Primary_Term' ) && ! empty( $settings['wp_post_nav_yoast_seo'] ) ) {
@@ -554,9 +566,7 @@ class wp_post_nav_Public {
     	$show_featured = 'no';
     }
 
-		if (array_key_exists('wp_post_nav_fallback_image', $settings)) {
-			$fallback = $settings["wp_post_nav_fallback_image"];
-		}
+		$fallback = $this->wppn_get_fallback_image_url( $settings );
 
 		//add in the additional options for yoast and woocommerce
 		if ( ! empty( $settings['wp_post_nav_yoast_seo'] ) ) {
