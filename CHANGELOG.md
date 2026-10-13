@@ -1,5 +1,29 @@
 # Changelog
 
+## Unreleased (2026-10-14) - Claude overnight review
+
+Not released or deployed. No version, `Stable tag` or `Tested up to` change.
+
+- Fixed: ticked checkboxes saved from the Settings > WP Post Nav page (posted
+  as `array( 'Yes' => 'Yes' )`) were stored as off, and the 2.0.4 -> 2.1.0
+  migration switched off every ticked option saved through the 2.0.x screen.
+  `WPPN_Settings::sanitize()` now accepts that legacy format.
+- Fixed: the `[wp_post_nav]` shortcode ignored unticked same-category, title,
+  category, excerpt and featured-image settings, and linked with a hard-coded
+  same-term flag. It now follows the settings like the footer navigation.
+- Fixed: posts without a featured image showed an empty image instead of the
+  bundled default fallback image when no custom fallback was saved.
+- Fixed: undefined `$options_markup` warning on the settings page when no
+  public post types are returned.
+- Removed the unused duplicate bootstrap `includes/class-wp-post-nav-shortcode.php`.
+- Build: `bin/build-package.sh` excludes `CLAUDE.md`, `CLAUDE.local.md` and
+  `.claude/`; `.gitignore` ignores local Claude files. Added `CLAUDE.md`.
+- Docs: handover, AGENTS, CODEX and roadmap now name `feature/release-2.1.0`
+  as the release branch; roadmap suggestions added.
+- Checks run: PHP lint, PHPUnit unit suite (18 tests, 54 assertions), PHPStan
+  level 5 (30 -> 20 findings with the 2.1.0 phar), package dry run. Integration
+  tests and a real-browser check are still required on the Mac.
+
 ## 2026-09-05T16:45:00+01:00 - Keep public metadata at production release
 
 - Restored `README.txt` metadata and public changelog scope to the published
