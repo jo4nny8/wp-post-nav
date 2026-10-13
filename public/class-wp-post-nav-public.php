@@ -524,42 +524,44 @@ class wp_post_nav_Public {
       return;
     }
 
-    extract(shortcode_atts(array(
+    $atts = shortcode_atts(array(
      'display_previous' => 'true',
      'display_next'     => 'true',
-    ), $atts));
+    ), $atts);
+    $display_previous = $atts['display_previous'];
+    $display_next     = $atts['display_next'];
 
     $settings = $this->wp_post_nav_get_settings();
 
-		if (array_key_exists('wp_post_nav_same_category', $settings)) {
+		if ( ! empty( $settings['wp_post_nav_same_category'] ) ) {
 			$same_category = true;  
     }
     else {
     	$same_category = false;
     }
 		
-		if (array_key_exists('wp_post_nav_show_title', $settings)) {
+		if ( ! empty( $settings['wp_post_nav_show_title'] ) ) {
 			$show_title = 'yes';  
     }
     else {
     	$show_title = 'no';
     }
 		
-		if (array_key_exists('wp_post_nav_show_category', $settings)) {
+		if ( ! empty( $settings['wp_post_nav_show_category'] ) ) {
 			$show_category = 'yes';  
     }
     else {
     	$show_category = 'no';
     }
 
-		if (array_key_exists('wp_post_nav_show_post_excerpt', $settings)) {
+		if ( ! empty( $settings['wp_post_nav_show_post_excerpt'] ) ) {
 			$show_excerpt = 'yes';    
     }
     else {
     	$show_excerpt = 'no';
     }
 
-		if (array_key_exists('wp_post_nav_show_featured_image', $settings)) {
+		if ( ! empty( $settings['wp_post_nav_show_featured_image'] ) ) {
 			$show_featured = 'yes'; 
     }
     else {
@@ -888,7 +890,7 @@ class wp_post_nav_Public {
 		            .$previous_post_category
 		            .$previous_post_excerpt. 
 		            '<span id="post-nav-previous-button"></span></ul>'
-		            ,true,$excluded_terms,$term );
+		            ,$same_category,$excluded_terms,$term );
 		      echo $prev_link;
 		    }
 
@@ -903,7 +905,7 @@ class wp_post_nav_Public {
 		            .$next_post_category
 		            .$next_post_excerpt. 
 		            '</ul>'
-		            ,true,$excluded_terms,$term );
+		            ,$same_category,$excluded_terms,$term );
 		      echo $next_link;
 		    }		
 			echo '</nav>'; 
