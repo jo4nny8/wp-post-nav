@@ -773,6 +773,8 @@ class wp_post_nav_admin {
           //get all the registered post types
           $post_types = get_post_types( $args, $output, $operator ); 
           
+          $options_markup = '';
+
           //firstly check that there are post types available
           if (!empty( $post_types)) {
 
