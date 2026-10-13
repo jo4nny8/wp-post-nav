@@ -25,6 +25,9 @@ rsync -a \
   --exclude '.gitignore' \
   --exclude 'AGENTS.md' \
   --exclude 'CODEX.md' \
+  --exclude 'CLAUDE.md' \
+  --exclude 'CLAUDE.local.md' \
+  --exclude '.claude/' \
   --exclude 'CHANGELOG.md' \
   --exclude 'docs/' \
   --exclude 'PROJECT_HANDOVER.md' \
