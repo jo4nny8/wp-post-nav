@@ -21,6 +21,9 @@ not approval to implement or publish it.
 - Use `wppn_` for new procedural functions, and `WPPN_` for new classes.
 - Do not rename or remove existing public functions, hooks, filters, shortcodes, options, database values, CSS classes, or template paths without a documented compatibility layer.
 - Keep `main` aligned with production and use `develop` for active work. Feature and fix branches should start from `develop`.
+  Current state: `main` holds the published WordPress.org 2.0.3 baseline, and
+  the 2.1.0 release preparation is on `feature/release-2.1.0` (see
+  `PROJECT_HANDOVER.md`).
 - Do not commit generated packages, Composer dependencies, IDE metadata, temporary files, or local environment files.
 - Do not publish to WordPress.org SVN without an explicit release decision and a reviewed package.
 

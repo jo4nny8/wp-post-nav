@@ -8,8 +8,8 @@ Updated: 2026-08-31T15:18:32+01:00
    compatibility-preserving batches.
 2. Complete a focused WordPress 7.1 manual test of the version `2.1.0`
    Customizer, settings migration and front-end navigation behaviour.
-3. Decide whether the resulting `develop` revision is ready for a deliberate
-   WordPress.org release candidate.
+3. Decide whether the resulting `feature/release-2.1.0` revision is ready for a
+   deliberate WordPress.org release candidate.
 
 ## Planned
 
