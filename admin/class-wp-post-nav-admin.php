@@ -67,8 +67,8 @@ class wp_post_nav_admin {
    * Initialise the class and set its properties.
    *
    * @since    0.0.1
-   * @var      string    $name       The name of this plugin.
-   * @var      string    $version    The version of this plugin.
+   * @param    string    $name       The name of this plugin.
+   * @param    string    $version    The version of this plugin.
    */
   public function __construct( $name, $version ) {
 

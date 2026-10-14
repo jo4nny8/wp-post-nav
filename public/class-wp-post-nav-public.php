@@ -40,8 +40,8 @@ class wp_post_nav_Public {
 	 * Initialise the class and set its properties.
 	 *
 	 * @since    0.0.1
-	 * @var      string    $name       The name of the plugin.
-	 * @var      string    $version    The version of this plugin.
+	 * @param    string    $name       The name of the plugin.
+	 * @param    string    $version    The version of this plugin.
 	 */
 	public function __construct( $name, $version ) {
 
