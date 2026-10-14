@@ -633,12 +633,12 @@ class wp_post_nav_Public {
 		    $wpseo_primary_term = new WPSEO_Primary_Term($term, $post_id );
 		    $wpseo_primary_term = $wpseo_primary_term->get_primary_term();
 		    $primary_term = get_term( $wpseo_primary_term );
-		    if ( !is_wp_error( $primary_term ) ) {
+		    if ( $primary_term instanceof WP_Term ) {
 		      
 		      $excluded_terms = get_terms( array(
 		            'taxonomy' => $primary_term->taxonomy,
 		            'hide_empty' => false,
-		            'exclude' => $primary_term->term_id,
+		            'exclude' => array( $primary_term->term_id ),
 		            'fields'   => 'ids'
 		        ) );
 
@@ -650,7 +650,7 @@ class wp_post_nav_Public {
 		            $prev_primary_term = get_term( $prev_wpseo_primary_term );
 		            
 		            //if no primary term assigned, or its not the same, exit
-		            if ( is_wp_error( $primary_term ) || $prev_primary_term != $primary_term) {
+		            if ( ! $prev_primary_term instanceof WP_Term || $prev_primary_term != $primary_term) {
 		              $previous = '';
 		            }
 		          }
@@ -661,7 +661,7 @@ class wp_post_nav_Public {
 		            $next_primary_term = get_term( $next_wpseo_primary_term );
 		           
 		            //if no primary term assigned, or its not the same, exit
-		            if ( is_wp_error( $primary_term ) || $next_primary_term != $primary_term) {
+		            if ( ! $next_primary_term instanceof WP_Term || $next_primary_term != $primary_term) {
 		              $next = '';
 		            }
 		          }
@@ -678,7 +678,7 @@ class wp_post_nav_Public {
 		    $excluded_terms = get_terms( array(
 		        'taxonomy' => $primary_term->taxonomy,
 		        'hide_empty' => false,
-		        'exclude' => $primary_term->term_id,
+		        'exclude' => array( $primary_term->term_id ),
 		        'fields'   => 'ids'
 		    ) );
 		    switch ( $exclude_primary ) {
@@ -686,7 +686,7 @@ class wp_post_nav_Public {
 		        if ($previous) {
 		        	$prev_primary_term = the_seo_framework()->get_primary_term( $previous->ID, $term );
 		           //if no primary term assigned, or its not the same, exit
-		          if ( empty( $primary_term ) || $prev_primary_term != $primary_term) {
+		          if ( empty( $prev_primary_term ) || $prev_primary_term != $primary_term) {
 		            $previous = '';
 		          }
 		        }
@@ -694,7 +694,7 @@ class wp_post_nav_Public {
 		        if ($next) {
 		        	$next_primary_term = the_seo_framework()->get_primary_term( $next->ID, $term );
 		           //if no primary term assigned, or its not the same, exit
-		          if ( empty( $primary_term ) || $next_primary_term != $primary_term) {
+		          if ( empty( $next_primary_term ) || $next_primary_term != $primary_term) {
 		            $next = '';
 		          }
 		        }
