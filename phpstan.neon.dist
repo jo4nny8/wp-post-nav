@@ -10,6 +10,7 @@ parameters:
         - includes/class-wppn-settings.php
         - includes/class-wppn-migrations.php
         - includes/class-wppn-customizer.php
+        - includes/class-wppn-customizer-post-types-control.php
         - includes/class-wp-post-nav-deactivator.php
         - includes/class-wp-post-nav-i18n.php
         - includes/class-wp-post-nav-loader.php
