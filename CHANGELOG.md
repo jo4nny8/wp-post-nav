@@ -19,13 +19,15 @@ Not released or deployed. No version, `Stable tag` or `Tested up to` change.
 - WP-08: corrected constructor PHPDoc tags and the legacy admin class reference
   case without changing public hooks, options or behaviour; PHPStan findings
   reduced from 20 to 17. Corrected the loader's action/filter parameter tags in
-  the next bounded batch, reducing the total to 15.
+  the next bounded batch, reducing the total to 15. Corrected the loader's
+  collection helper parameter/return contract in a third batch, reducing the
+  total to 11.
 - Build: `bin/build-package.sh` excludes `CLAUDE.md`, `CLAUDE.local.md` and
   `.claude/`; `.gitignore` ignores local Claude files. Added `CLAUDE.md`.
 - Docs: handover, AGENTS, CODEX and roadmap now name `feature/release-2.1.0`
   as the release branch; roadmap suggestions added.
 - Checks run: PHP lint, PHPUnit unit suite (18 tests, 54 assertions), PHPStan
-  level 5 (30 -> 15 findings with the 2.1.0 phar), package dry run. Integration
+  level 5 (30 -> 11 findings with the 2.1.0 phar), package dry run. Integration
   tests and a real-browser check are still required on the Mac.
 
 ## 2026-09-05T16:45:00+01:00 - Keep public metadata at production release

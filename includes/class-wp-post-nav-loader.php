@@ -81,13 +81,13 @@ class wp_post_nav_Loader {
 	 *
 	 * @since    0.0.1
 	 * @access   private
-	 * @var      array                $hooks            The collection of hooks that is being registered (that is, actions or filters).
-	 * @var      string               $hook             The name of the WordPress filter that is being registered.
-	 * @var      object               $component        A reference to the instance of the object on which the filter is defined.
-	 * @var      string               $callback         The name of the function definition on the $component.
-	 * @var      int      Optional    $priority         The priority at which the function should be fired.
-	 * @var      int      Optional    $accepted_args    The number of arguments that should be passed to the $callback.
-	 * @return   type                                   The collection of actions and filters registered with WordPress.
+	 * @param    array                $hooks            The collection of hooks that is being registered (that is, actions or filters).
+	 * @param    string               $hook             The name of the WordPress filter that is being registered.
+	 * @param    object               $component        A reference to the instance of the object on which the filter is defined.
+	 * @param    string               $callback         The name of the function definition on the $component.
+	 * @param    int                  $priority         The priority at which the function should be fired.
+	 * @param    int                  $accepted_args    The number of arguments that should be passed to the $callback.
+	 * @return   array                                   The collection of actions and filters registered with WordPress.
 	 */
 	private function add( $hooks, $hook, $component, $callback, $priority, $accepted_args ) {
 
