@@ -552,12 +552,10 @@ class wp_post_nav_admin {
    * @return void
    */
   public function register_settings() {
-    if( is_array( $this->settings ) ) {
-      
-      //register the setting
-      register_setting( $this->name, $this->option_name, array( $this, 'validate_fields' ) );
-      
-      foreach( $this->settings as $section => $data ) {
+    // Register the setting and each field from the class-owned settings array.
+    register_setting( $this->name, $this->option_name, array( $this, 'validate_fields' ) );
+
+    foreach( $this->settings as $section => $data ) {
 
         // Add section to page
         add_settings_section( $section, $data['title'], array( $this, 'settings_section' ), $this->name );
@@ -569,7 +567,6 @@ class wp_post_nav_admin {
             add_settings_field( $field['id'], $field['label'], array( $this, 'display_field' ), $this->name, $section, array( 'field' => $field ) );
           }
         }
-      }
     }
   }
 
@@ -795,10 +792,6 @@ class wp_post_nav_admin {
                 else {
                   $checked = '';
                   
-                  if( $data && 'on' == $data ){
-                    $checked = 'checked';
-                  }
-
                   $iterator++;
                   $options_markup.= 
                   sprintf(
