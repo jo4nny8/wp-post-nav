@@ -33,8 +33,8 @@ Updated: 2026-10-14 (branch and state corrected from the 13 October 2026 reposit
   (supersedes the earlier `97cb66d` on `develop`).
 - WordPress 7.1 runtime loading passes; unit tests and WordPress integration
   tests (`wppn_tests_` prefix on `plugins.test`) pass.
-- PHPStan findings: 30 at the capture; the overnight patch set and first WP-08
-  batch reduce them to 17 (see `CHANGELOG.md`).
+- PHPStan findings: 30 at the capture; the overnight patch set and first two
+  WP-08 batches reduce them to 15 (see `CHANGELOG.md`).
 - The 2.1.0 Customizer, settings migration and front end still need a
   real-browser WordPress 7.1 acceptance test before any release decision.
 - WordPress.org publication is a separate explicit release decision.
