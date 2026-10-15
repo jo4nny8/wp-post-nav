@@ -83,15 +83,18 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --prefer-dist --no-interaction --no-progress
 
+      - name: Use the PHPUnit version the WordPress test library supports
+        run: composer require --dev --with-all-dependencies --no-interaction --no-progress "phpunit/phpunit:^9.6" "yoast/phpunit-polyfills:^3.1"
+
       - name: Install WordPress test library
         env:
           WP_TESTS_DIR: /tmp/wordpress-tests-lib
         run: |
           curl --fail --silent --show-error --location \
-            https://develop.svn.wordpress.org/trunk/tests/phpunit/bin/install-wp-tests.sh \
+            https://raw.githubusercontent.com/wp-cli/scaffold-command/main/templates/install-wp-tests.sh \
             --output /tmp/install-wp-tests.sh
           chmod +x /tmp/install-wp-tests.sh
-          /tmp/install-wp-tests.sh wordpress_test root root 127.0.0.1 latest
+          /tmp/install-wp-tests.sh wordpress_test root root 127.0.0.1 latest true
 
       - name: Run WordPress integration tests
         env:

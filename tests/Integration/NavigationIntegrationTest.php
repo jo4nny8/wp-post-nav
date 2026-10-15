@@ -35,12 +35,13 @@ if ( class_exists( 'WP_UnitTestCase' ) ) {
 
 		public function test_first_and_last_posts_have_one_empty_navigation_direction(): void {
 			$this->go_to( get_permalink( self::$posts['first'] ) );
-			$this->assertNull( get_adjacent_post( false, array(), true ) );
+			// get_adjacent_post() returns an empty string when there is no adjacent post.
+			$this->assertSame( '', get_adjacent_post( false, array(), true ) );
 			$this->assertSame( self::$posts['middle'], get_adjacent_post( false, array(), false )->ID );
 
 			$this->go_to( get_permalink( self::$posts['last'] ) );
 			$this->assertSame( self::$posts['middle'], get_adjacent_post( false, array(), true )->ID );
-			$this->assertNull( get_adjacent_post( false, array(), false ) );
+			$this->assertSame( '', get_adjacent_post( false, array(), false ) );
 		}
 
 		public function test_shortcode_renders_previous_and_next_post_markup(): void {
@@ -64,6 +65,10 @@ if ( class_exists( 'WP_UnitTestCase' ) ) {
 		}
 
 		public function test_shortcode_returns_empty_for_a_post_without_adjacent_posts(): void {
+			// Remove the shared fixtures so the new post has no neighbours; the test transaction restores them.
+			foreach ( self::$posts as $post_id ) {
+				wp_delete_post( $post_id, true );
+			}
 			$single = WPPN_Test_Content_Factory::post( 'WPPN Single Post', '2025-01-01 10:00:00', self::$category_id );
 			$this->go_to( get_permalink( $single ) );
 
