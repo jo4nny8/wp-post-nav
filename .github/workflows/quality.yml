@@ -83,6 +83,9 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --prefer-dist --no-interaction --no-progress
 
+      - name: Use the PHPUnit version the WordPress test library supports
+        run: composer require --dev --with-all-dependencies --no-interaction --no-progress "phpunit/phpunit:^9.6" "yoast/phpunit-polyfills:^3.1"
+
       - name: Install WordPress test library
         env:
           WP_TESTS_DIR: /tmp/wordpress-tests-lib
