@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- 2026-10-15: Release packages now leave out the agent and project-record files
+  (`CLAUDE.md`, `CURRENT_STATE.md`, `FILESYSTEM_MAP.md`,
+  `DEVELOPMENT_CONTEXT.md`, `PROJECT_HANDOVER.md`, `ROADMAP.md`). Checked by building the
+  package and listing its contents.
 - 2026-10-15: Adopted the agreed project documentation standard: AGENTS.md now
   points to the global agents file and holds project rules only; CLAUDE.md and
   CODEX.md are pointers; added CLAUDE.md, CURRENT_STATE.md and

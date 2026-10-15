@@ -24,6 +24,12 @@ rsync -a \
   --exclude '.gitignore' \
   --exclude 'AGENTS.md' \
   --exclude 'CODEX.md' \
+  --exclude 'CLAUDE.md' \
+  --exclude 'CURRENT_STATE.md' \
+  --exclude 'FILESYSTEM_MAP.md' \
+  --exclude 'DEVELOPMENT_CONTEXT.md' \
+  --exclude 'PROJECT_HANDOVER.md' \
+  --exclude 'ROADMAP.md' \
   --exclude 'docs/' \
   --exclude 'tests/' \
   --exclude 'DEVELOPMENT-ASSESSMENT.md' \
