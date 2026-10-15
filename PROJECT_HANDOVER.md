@@ -7,7 +7,7 @@ Updated: 2026-08-30T23:26:24+01:00
 - Product: WP Post Nav
 - Type: public WordPress plugin
 - Repository: `jo4nny8/wp-post-nav`
-- Canonical Mac working copy: `/Users/johnbosworth/Sync Folder/Dev/plugins.test/wp-content/plugins/wp-post-nav`
+- Canonical Mac working copy: `/Users/johnbosworth/Development/websites/plugins.test/wp-content/plugins/wp-post-nav`
 - Development site: `plugins.test`
 - Active development branch: `develop`
 - Production branch: `main`
@@ -15,13 +15,15 @@ Updated: 2026-08-30T23:26:24+01:00
 
 ## Start every task
 
-1. Read `AGENTS.md`, `CODEX.md`, `ROADMAP.md` and this handover.
+1. Read `AGENTS.md`, `CURRENT_STATE.md`, `ROADMAP.md` and this handover.
 2. Check the working tree and preserve unrelated changes.
 3. Fetch GitHub and confirm work starts from the correct branch.
 4. Review `CHANGELOG.md` and the relevant document under `docs/`.
 5. Keep compatibility-sensitive hooks, options, markup and identifiers stable.
 
 ## Current state
+
+Recorded on 2026-08-30. `CURRENT_STATE.md` holds the latest verified state.
 
 - Development version: `2.1.0`.
 - Current approved development revision: `97cb66d`.
@@ -35,5 +37,6 @@ Updated: 2026-08-30T23:26:24+01:00
 - Update `CHANGELOG.md` with an ISO 8601 completion timestamp.
 - Review the diff and secret scan before committing.
 - Push the approved branch to GitHub.
-- Synchronise the approved GitHub revision to the NAS reference checkout.
+- After an agreed merge, refresh the NAS reference checkout as set out in the
+  global agents file (section 4.1).
 - Report revisions, checks and any remaining limitation.

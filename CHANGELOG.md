@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased
+
+- 2026-10-15: Adopted the agreed project documentation standard: AGENTS.md now
+  points to the global agents file and holds project rules only; CLAUDE.md and
+  CODEX.md are pointers; added CLAUDE.md, CURRENT_STATE.md and
+  FILESYSTEM_MAP.md. Also restructured README.md and corrected the retired
+  working-copy path in PROJECT_HANDOVER.md. Documentation only; no plugin code,
+  version or README.txt change.
+
 ## 2026-08-31T15:18:32+01:00 - Add project roadmap
 
 - Added the canonical project roadmap and linked it from the agent, handover and
