@@ -13,9 +13,10 @@
     "phpcompatibility/php-compatibility": "^9.0",
     "php-stubs/wordpress-stubs": "^6.8",
     "phpstan/phpstan": "^2.0",
-    "phpunit/phpunit": "^10.5",
+    "phpunit/phpunit": "^11.5",
     "squizlabs/php_codesniffer": "^3.10",
-    "wp-coding-standards/wpcs": "^3.1"
+    "wp-coding-standards/wpcs": "^3.1",
+    "yoast/phpunit-polyfills": "^4.0"
   },
   "scripts": {
     "lint:php": "find . -path ./vendor -prune -o -path ./build -prune -o -name '*.php' -print0 | xargs -0 -n1 php -l",
