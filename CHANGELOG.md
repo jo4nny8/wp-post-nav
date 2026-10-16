@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- 2026-10-16: Renamed the Composer package from
+  `aquarius-home-improvements/wp-post-nav` to `jo4nny8/wp-post-nav`, since this
+  is a personal project. Only the lock file's content hash changed; no
+  dependency versions or plugin code changed.
 - 2026-10-16: Consolidated the 2.1.0 work onto one branch: merged
   `claude/overnight-review-20261014`, which already contains the four
   `feature/release-2.1.0` release-preparation commits, into `develop`. Not
