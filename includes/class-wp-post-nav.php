@@ -143,7 +143,7 @@ class wp_post_nav {
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new wp_post_nav_Admin( $this->get_plugin_name(), $this->get_version() );
+		$plugin_admin = new wp_post_nav_admin( $this->get_plugin_name(), $this->get_version() );
 		$plugin_customizer = new WPPN_Customizer();
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );

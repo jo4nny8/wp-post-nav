@@ -22,3 +22,7 @@ phpstan-baseline.neon
 # WordPress runtime files
 /wp-content/
 /wp-config.php
+
+# Local Claude Code files (never committed or packaged)
+CLAUDE.local.md
+.claude/settings.local.json

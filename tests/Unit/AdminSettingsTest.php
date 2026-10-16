@@ -59,6 +59,15 @@ final class AdminSettingsTest extends TestCase {
 		$this->assertNotEmpty( $GLOBALS['wppn_test_settings_errors'] );
 	}
 
+	public function test_settings_page_checkbox_array_is_saved_as_ticked(): void {
+		$validated = $this->admin->validate_fields(
+			array( 'wp_post_nav_show_title' => array( 'Yes' => 'Yes' ) )
+		);
+
+		$this->assertSame( 'yes', $validated['wp_post_nav_show_title'] );
+		$this->assertSame( '', $validated['wp_post_nav_show_category'] );
+	}
+
 	public function test_checkbox_is_retained_when_checked_and_absent_when_unchecked(): void {
 		$validated = $this->admin->validate_fields(
 			array( 'wp_post_nav_show_title' => 'yes' )

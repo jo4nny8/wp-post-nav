@@ -11,10 +11,10 @@ repository files; the local site and WordPress.org were not inspected)
 - `develop` (`206a001`): integration branch with the `2.1.0` settings
   abstraction, Customizer migration, development tooling, handover and
   roadmap.
-- `feature/release-2.1.0` (`f55c5ca`, now on GitHub): four 2.1.0
-  release-preparation commits not yet merged into `develop`.
-- `claude/overnight-review-20261014` (`a1cbe6d`, on GitHub): unmerged review
-  work including PHPStan fixes and package-exclusion changes.
+- `claude/wppn-2.1.0-consolidated` (2026-10-16, on GitHub): the single 2.1.0
+  line. It merges `claude/overnight-review-20261014` (`a1cbe6d`), which already
+  contains the four `feature/release-2.1.0` commits (`f55c5ca`), into
+  `develop`. Awaiting review and the local WordPress 7.1 test; not merged.
 - GitHub's default branch is still the legacy `master` (`e5e25b4`, 2018).
 - Local development site: `plugins.test` (MAMP PRO).
 - WordPress.org publication of 2.1.0 has not been decided.
@@ -23,7 +23,9 @@ repository files; the local site and WordPress.org were not inspected)
 
 - Plugin header version on `develop`: `2.1.0`.
 - `README.txt` on `develop`: requires WordPress 6.0 and PHP 8.0; tested up to
-  WordPress 6.8; `Stable tag: 2.1.0`.
+  WordPress 6.8; `Stable tag: 2.1.0`. The consolidated branch restores the
+  published 2.0.3 metadata (tested up to 6.3, `Stable tag: 2.0.3`) until a
+  release decision.
 - Development tooling: PHPUnit 10, PHPCS with WordPress Coding Standards,
   PHPStan 2 (Composer `require-dev`). GitHub Actions runs Composer
   validation, PHP syntax and unit tests on pull requests and on pushes to
@@ -33,8 +35,8 @@ repository files; the local site and WordPress.org were not inspected)
 
 - `PROJECT_HANDOVER.md` (2026-08-30) recorded 16 unit tests with 47
   assertions passing and WordPress 7.1 runtime loading on `plugins.test`.
-- 30 pre-existing PHPStan findings were documented on `develop`; the unmerged
-  overnight review branch reports them resolved.
+- PHPStan 2.1.31 reports no errors on the consolidated branch (2026-10-16),
+  down from 30 documented findings.
 - The 2.1.0 Customizer, settings migration and front-end navigation still need
   a focused manual WordPress 7.1 test (`ROADMAP.md`).
 - The `develop` package script does not exclude every root development

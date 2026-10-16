@@ -22,6 +22,22 @@ final class MigrationTest extends TestCase {
 		$this->assertFalse( get_option( 'wp_post_nav_options', false ) );
 	}
 
+	public function test_legacy_ticked_checkbox_arrays_survive_migration(): void {
+		$GLOBALS['wppn_test_options']['wp_post_nav_options'] = array(
+			'wp_post_nav_post_types'      => array( 'post' => 'post', 'page' => 'page' ),
+			'wp_post_nav_same_category'   => array( 'Yes' => 'Yes' ),
+			'wp_post_nav_show_title'      => array( 'Yes' => 'Yes' ),
+			'wp_post_nav_background_color' => '#123456',
+		);
+
+		$this->assertTrue( WPPN_Migrations::migrate_2_0_4_to_2_1_0() );
+		$settings = get_option( 'wppn_settings' );
+		$this->assertSame( 'yes', $settings['wp_post_nav_same_category'] );
+		$this->assertSame( 'yes', $settings['wp_post_nav_show_title'] );
+		$this->assertSame( '', $settings['wp_post_nav_show_category'] );
+		$this->assertSame( array( 'post' => 'post', 'page' => 'page' ), $settings['wp_post_nav_post_types'] );
+	}
+
 	public function test_migration_is_idempotent_and_does_not_replace_new_settings(): void {
 		$GLOBALS['wppn_test_options']['wppn_settings'] = WPPN_Settings::get_defaults();
 		$GLOBALS['wppn_test_options']['wppn_settings']['wp_post_nav_title_color'] = '#010101';

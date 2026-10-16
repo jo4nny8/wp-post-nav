@@ -21,7 +21,7 @@
   "scripts": {
     "lint:php": "find . -path ./vendor -prune -o -path ./build -prune -o -name '*.php' -print0 | xargs -0 -n1 php -l",
     "lint:phpcs": "phpcs --standard=phpcs.xml.dist",
-    "analyse": "phpstan analyse --debug --memory-limit=512M --configuration=phpstan.neon.dist",
+    "analyse": "phpstan analyse --debug --memory-limit=1G --configuration=phpstan.neon.dist",
     "test": "phpunit --configuration tests/phpunit.xml",
     "test:integration": "phpunit --configuration tests/phpunit-integration.xml",
     "build": "sh bin/build-package.sh"

@@ -108,7 +108,7 @@ class WPPN_Customizer {
 				)
 			);
 			$value = $default;
-			$control_args = array_merge( $control, array( 'settings' => $setting_id, 'section' => 'wppn_' . $control['section'], 'value' => $value ) );
+			$control_args = array_merge( $control, array( 'setting' => $setting_id, 'section' => 'wppn_' . $control['section'], 'value' => $value ) );
 			if ( 'wp_post_nav_post_types' === $key && class_exists( 'WPPN_Customizer_Post_Types_Control' ) ) {
 				$wp_customize->add_control( new WPPN_Customizer_Post_Types_Control( $wp_customize, $setting_id, $control_args ) );
 			} elseif ( 'wp_post_nav_fallback_image' === $key && class_exists( 'WP_Customize_Image_Control' ) ) {
