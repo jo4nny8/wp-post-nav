@@ -40,8 +40,8 @@ class wp_post_nav_Public {
 	 * Initialise the class and set its properties.
 	 *
 	 * @since    0.0.1
-	 * @var      string    $name       The name of the plugin.
-	 * @var      string    $version    The version of this plugin.
+	 * @param    string    $name       The name of the plugin.
+	 * @param    string    $version    The version of this plugin.
 	 */
 	public function __construct( $name, $version ) {
 
@@ -299,6 +299,18 @@ class wp_post_nav_Public {
 		return class_exists( 'WPPN_Settings' ) ? WPPN_Settings::get() : get_option( 'wp_post_nav_options', array() );
 	}
 
+	/**
+	 * Return the escaped fallback image URL, using the bundled default image
+	 * when no custom fallback has been saved (as the settings screens state).
+	 *
+	 * @param array $settings Current plugin settings.
+	 * @return string
+	 */
+	private function wppn_get_fallback_image_url( $settings ) {
+		$fallback = ! empty( $settings['wp_post_nav_fallback_image'] ) ? $settings['wp_post_nav_fallback_image'] : plugin_dir_url( __FILE__ ) . 'images/default_fallback.png';
+		return esc_url( $fallback );
+	}
+
 	//get the post categories for the current displayed post type
 	public function get_post_categories() {
 		$category =  get_queried_object();
@@ -418,7 +430,7 @@ class wp_post_nav_Public {
     	$show_featured = 'no';
     }
 
-		$fallback = esc_url( $settings['wp_post_nav_fallback_image'] ?? plugin_dir_url( __FILE__ ) . 'images/default_fallback.png' );
+		$fallback = $this->wppn_get_fallback_image_url( $settings );
 
 		//add in the additional options for yoast and woocommerce
 			if ( class_exists( 'WPSEO_Primary_Term' ) && ! empty( $settings['wp_post_nav_yoast_seo'] ) ) {
@@ -512,51 +524,51 @@ class wp_post_nav_Public {
       return;
     }
 
-    extract(shortcode_atts(array(
+    $atts = shortcode_atts(array(
      'display_previous' => 'true',
      'display_next'     => 'true',
-    ), $atts));
+    ), $atts);
+    $display_previous = $atts['display_previous'];
+    $display_next     = $atts['display_next'];
 
     $settings = $this->wp_post_nav_get_settings();
 
-		if (array_key_exists('wp_post_nav_same_category', $settings)) {
+		if ( ! empty( $settings['wp_post_nav_same_category'] ) ) {
 			$same_category = true;  
     }
     else {
     	$same_category = false;
     }
 		
-		if (array_key_exists('wp_post_nav_show_title', $settings)) {
+		if ( ! empty( $settings['wp_post_nav_show_title'] ) ) {
 			$show_title = 'yes';  
     }
     else {
     	$show_title = 'no';
     }
 		
-		if (array_key_exists('wp_post_nav_show_category', $settings)) {
+		if ( ! empty( $settings['wp_post_nav_show_category'] ) ) {
 			$show_category = 'yes';  
     }
     else {
     	$show_category = 'no';
     }
 
-		if (array_key_exists('wp_post_nav_show_post_excerpt', $settings)) {
+		if ( ! empty( $settings['wp_post_nav_show_post_excerpt'] ) ) {
 			$show_excerpt = 'yes';    
     }
     else {
     	$show_excerpt = 'no';
     }
 
-		if (array_key_exists('wp_post_nav_show_featured_image', $settings)) {
+		if ( ! empty( $settings['wp_post_nav_show_featured_image'] ) ) {
 			$show_featured = 'yes'; 
     }
     else {
     	$show_featured = 'no';
     }
 
-		if (array_key_exists('wp_post_nav_fallback_image', $settings)) {
-			$fallback = $settings["wp_post_nav_fallback_image"];
-		}
+		$fallback = $this->wppn_get_fallback_image_url( $settings );
 
 		//add in the additional options for yoast and woocommerce
 		if ( ! empty( $settings['wp_post_nav_yoast_seo'] ) ) {
@@ -621,12 +633,12 @@ class wp_post_nav_Public {
 		    $wpseo_primary_term = new WPSEO_Primary_Term($term, $post_id );
 		    $wpseo_primary_term = $wpseo_primary_term->get_primary_term();
 		    $primary_term = get_term( $wpseo_primary_term );
-		    if ( !is_wp_error( $primary_term ) ) {
+		    if ( $primary_term instanceof WP_Term ) {
 		      
 		      $excluded_terms = get_terms( array(
 		            'taxonomy' => $primary_term->taxonomy,
 		            'hide_empty' => false,
-		            'exclude' => $primary_term->term_id,
+		            'exclude' => array( $primary_term->term_id ),
 		            'fields'   => 'ids'
 		        ) );
 
@@ -638,7 +650,7 @@ class wp_post_nav_Public {
 		            $prev_primary_term = get_term( $prev_wpseo_primary_term );
 		            
 		            //if no primary term assigned, or its not the same, exit
-		            if ( is_wp_error( $primary_term ) || $prev_primary_term != $primary_term) {
+		            if ( ! $prev_primary_term instanceof WP_Term || $prev_primary_term != $primary_term) {
 		              $previous = '';
 		            }
 		          }
@@ -649,7 +661,7 @@ class wp_post_nav_Public {
 		            $next_primary_term = get_term( $next_wpseo_primary_term );
 		           
 		            //if no primary term assigned, or its not the same, exit
-		            if ( is_wp_error( $primary_term ) || $next_primary_term != $primary_term) {
+		            if ( ! $next_primary_term instanceof WP_Term || $next_primary_term != $primary_term) {
 		              $next = '';
 		            }
 		          }
@@ -666,7 +678,7 @@ class wp_post_nav_Public {
 		    $excluded_terms = get_terms( array(
 		        'taxonomy' => $primary_term->taxonomy,
 		        'hide_empty' => false,
-		        'exclude' => $primary_term->term_id,
+		        'exclude' => array( $primary_term->term_id ),
 		        'fields'   => 'ids'
 		    ) );
 		    switch ( $exclude_primary ) {
@@ -674,7 +686,7 @@ class wp_post_nav_Public {
 		        if ($previous) {
 		        	$prev_primary_term = the_seo_framework()->get_primary_term( $previous->ID, $term );
 		           //if no primary term assigned, or its not the same, exit
-		          if ( empty( $primary_term ) || $prev_primary_term != $primary_term) {
+		          if ( empty( $prev_primary_term ) || $prev_primary_term != $primary_term) {
 		            $previous = '';
 		          }
 		        }
@@ -682,7 +694,7 @@ class wp_post_nav_Public {
 		        if ($next) {
 		        	$next_primary_term = the_seo_framework()->get_primary_term( $next->ID, $term );
 		           //if no primary term assigned, or its not the same, exit
-		          if ( empty( $primary_term ) || $next_primary_term != $primary_term) {
+		          if ( empty( $next_primary_term ) || $next_primary_term != $primary_term) {
 		            $next = '';
 		          }
 		        }
@@ -878,7 +890,7 @@ class wp_post_nav_Public {
 		            .$previous_post_category
 		            .$previous_post_excerpt. 
 		            '<span id="post-nav-previous-button"></span></ul>'
-		            ,true,$excluded_terms,$term );
+		            ,$same_category,$excluded_terms,$term );
 		      echo $prev_link;
 		    }
 
@@ -893,7 +905,7 @@ class wp_post_nav_Public {
 		            .$next_post_category
 		            .$next_post_excerpt. 
 		            '</ul>'
-		            ,true,$excluded_terms,$term );
+		            ,$same_category,$excluded_terms,$term );
 		      echo $next_link;
 		    }		
 			echo '</nav>'; 

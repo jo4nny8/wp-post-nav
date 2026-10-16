@@ -10,6 +10,7 @@ mkdir -p "$build_dir/wp-post-nav"
 
 rsync -a \
   --exclude '.DS_Store' \
+  --exclude '.git' \
   --exclude '.git/' \
   --exclude '.github/' \
   --exclude 'assets/' \
@@ -30,7 +31,11 @@ rsync -a \
   --exclude 'DEVELOPMENT_CONTEXT.md' \
   --exclude 'PROJECT_HANDOVER.md' \
   --exclude 'ROADMAP.md' \
+  --exclude 'CLAUDE.local.md' \
+  --exclude '.claude/' \
+  --exclude 'CHANGELOG.md' \
   --exclude 'docs/' \
+  --exclude 'README.md' \
   --exclude 'tests/' \
   --exclude 'DEVELOPMENT-ASSESSMENT.md' \
   --exclude 'REPOSITORY-COMPARISON.md' \

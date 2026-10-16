@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+- 2026-10-16: Renamed the Composer package from
+  `aquarius-home-improvements/wp-post-nav` to `jo4nny8/wp-post-nav`, since this
+  is a personal project. Only the lock file's content hash changed; no
+  dependency versions or plugin code changed.
+- 2026-10-16: Consolidated the 2.1.0 work onto one branch: merged
+  `claude/overnight-review-20261014`, which already contains the four
+  `feature/release-2.1.0` release-preparation commits, into `develop`. Not
+  released; WordPress.org is unchanged.
 - 2026-10-15: Release packages now leave out the agent and project-record files
   (`CLAUDE.md`, `CURRENT_STATE.md`, `FILESYSTEM_MAP.md`,
   `DEVELOPMENT_CONTEXT.md`, `PROJECT_HANDOVER.md`, `ROADMAP.md`). Checked by building the
@@ -12,6 +20,78 @@
   FILESYSTEM_MAP.md. Also restructured README.md and corrected the retired
   working-copy path in PROJECT_HANDOVER.md. Documentation only; no plugin code,
   version or README.txt change.
+
+## Unreleased (2026-10-14) - Claude overnight review
+
+Not released or deployed. No version, `Stable tag` or `Tested up to` change.
+
+- Fixed: ticked checkboxes saved from the Settings > WP Post Nav page (posted
+  as `array( 'Yes' => 'Yes' )`) were stored as off, and the 2.0.4 -> 2.1.0
+  migration switched off every ticked option saved through the 2.0.x screen.
+  `WPPN_Settings::sanitize()` now accepts that legacy format.
+- Fixed: the `[wp_post_nav]` shortcode ignored unticked same-category, title,
+  category, excerpt and featured-image settings, and linked with a hard-coded
+  same-term flag. It now follows the settings like the footer navigation.
+- Fixed: posts without a featured image showed an empty image instead of the
+  bundled default fallback image when no custom fallback was saved.
+- Fixed: undefined `$options_markup` warning on the settings page when no
+  public post types are returned.
+- Removed the unused duplicate bootstrap `includes/class-wp-post-nav-shortcode.php`.
+- WP-08: corrected constructor PHPDoc tags and the legacy admin class reference
+  case without changing public hooks, options or behaviour; PHPStan findings
+  reduced from 20 to 17. Corrected the loader's action/filter parameter tags in
+  the next bounded batch, reducing the total to 15. Corrected the loader's
+  collection helper parameter/return contract in a third batch, reducing the
+  total to 11. Removed three provably unreachable/redundant admin branches in a
+  fourth batch, reducing the total to 8 without changing rendered settings.
+  Aligned the Customizer control arguments with WordPress's singular-setting
+  contract and included the custom control in analysis, reducing the total to 5.
+  Corrected adjacent-primary-term validation and exclusion argument shapes in a
+  sixth batch, resolving the remaining findings.
+- Build: `bin/build-package.sh` excludes `CLAUDE.md`, `CLAUDE.local.md` and
+  `.claude/`; `.gitignore` ignores local Claude files. Added `CLAUDE.md`.
+- Docs: handover, AGENTS, CODEX and roadmap now name `feature/release-2.1.0`
+  as the release branch; roadmap suggestions added.
+- Checks run: PHP lint, PHPUnit unit suite (18 tests, 54 assertions), PHPStan
+  level 5 (30 -> 0 findings with the 2.1.0 phar), package dry run. Integration
+  tests and a real-browser check are still required on the Mac.
+
+## 2026-09-05T16:45:00+01:00 - Keep public metadata at production release
+
+- Restored `README.txt` metadata and public changelog scope to the published
+  WordPress.org 2.0.3 release.
+- Kept unreleased 2.0.4 and 2.1.0 work exclusively in the internal
+  development history.
+
+## 2026-09-05T16:40:27+01:00 - Separate public and internal changelog scope
+
+- Kept `README.txt` limited to concise production release notes for the
+  WordPress.org listing.
+- Moved development, testing and release-process detail to `CHANGELOG.md` and
+  the project documentation.
+- Updated the public compatibility marker to WordPress 7.1 after staging
+  validation.
+
+## 2026-09-05T16:29:47+01:00 - Enable WordPress integration testing
+
+- Added PHPUnit Polyfills and aligned the Composer test runner with the
+  PHPUnit version required by the WordPress integration suite.
+- Loaded the Polyfills dependency from the plugin integration bootstrap.
+- Corrected integration fixtures for WordPress's empty adjacent-post return
+  value and isolated single-post shortcode behaviour.
+- Verified against the `plugins.test` WordPress 7.1 installation using the
+  dedicated `wppn_tests_` table prefix: 11 tests, 19 assertions and 3 skips.
+
+## 2026-09-05T16:18:26+01:00 - Prepare release validation tooling
+
+- Excluded Git metadata and internal development documents from the
+  WordPress.org distribution package.
+- Increased the PHPStan analysis memory limit so the project analysis command
+  completes and reports its existing legacy findings.
+- Validation completed: Composer validation, PHP syntax lint, 16 PHPUnit tests
+  with 47 assertions, package ZIP integrity and `git diff --check`.
+- WordPress integration testing remains dependent on the local MAMP database
+  service and an isolated test database.
 
 ## 2026-08-31T15:18:32+01:00 - Add project roadmap
 
