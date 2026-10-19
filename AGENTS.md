@@ -24,6 +24,11 @@ them if they ever disagree.
   `/volume2/Development/Repositories/personal/checkouts/wp-post-nav`
 - Runtime and environments: the local MAMP PRO site `plugins.test`; the
   public release channel is the WordPress.org plugin directory (SVN).
+- Putting a branch on the Mac for John to test: check out the branch in the
+  canonical Mac working copy (the MAMP PRO site `plugins.test` serves this
+  folder), reload `http://plugins.test/wp-admin/plugins.php` and confirm the
+  plugin version and the changed behaviour (global file section 3.1, "Ready
+  means on the Mac").
 
 ## Read First
 
