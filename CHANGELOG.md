@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- 2026-10-19: Added a "Project files" section to `AGENTS.md` summarising John's project files standard (folders, naming, starter threads, plain-English rule) with a link to the master copy.
 - 2026-10-15: Release packages now leave out the agent and project-record files
   (`CLAUDE.md`, `CURRENT_STATE.md`, `FILESYSTEM_MAP.md`,
   `DEVELOPMENT_CONTEXT.md`, `PROJECT_HANDOVER.md`, `ROADMAP.md`). Checked by building the
