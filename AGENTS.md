@@ -121,6 +121,35 @@ Run the checks appropriate to the change:
 Their legacy findings are documented in `DEVELOPMENT-ASSESSMENT.md`; do not
 hide them by adding a baseline without review.
 
+## Project files
+
+This project's shared files in claude.ai follow John's project files
+standard. The master copy is
+[`standards/project-files.md`](https://github.com/jo4nny8/jo4nny8-development-standards/blob/main/standards/project-files.md)
+in `jo4nny8/jo4nny8-development-standards`. Git stays the master for
+everything in this repository.
+
+- Folders, with nothing at the top level:
+  1. `01-PROJECT-INFO`: the standard, plus copies of this repository's
+     `AGENTS.md`, `ROADMAP.md`, `CHANGELOG.md`, `CURRENT_STATE.md` and
+     `README.md`.
+  2. `02-MODULES/<module>/`: `reports`, `plans`, `notes`, `screenshots` and a
+     `README.md`. Folder names match this project's own module names.
+  3. `03-KNOWLEDGE`: background and reference.
+  4. `04-SCREENSHOTS`: whole-project screenshots only.
+  5. `999-HANDOVER`: old handovers, kept for history.
+- File names: `WHAT-IT-IS-YYYY-MM-DD.ext` in capitals, for example
+  `SEO-AUDIT-2026-10-19.md`. A newer version gets a new date and the old one
+  stays.
+- Threads: titles start with their module, for example "Marketing: monthly
+  SEO check". Every project has five starter threads: "<Project>: Design",
+  "<Project>: Roadmap", "<Project>: Issues", "<Project>: Releases" and
+  "<Project>: Health check".
+- Talking to John: plain English, with no pull request numbers, branch names
+  or Git terms unless he asks. Describe each change in one plain sentence and
+  ask "OK to make this official?" (John, 19 October 2026).
+- Company files, photos and data belong in the project files, never in Git.
+
 ## Records To Keep Current
 
 When a change set is agreed (global file section 4.1), update the affected
