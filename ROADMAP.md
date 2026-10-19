@@ -1,5 +1,9 @@
 # WP Post Nav Roadmap
 
+What to build next. Faults and things to fix are GitHub issues in this
+repository (labels `bug`, `fix-next`, `blocked`, `from-field-test`,
+`standards-repair`), not roadmap items.
+
 Updated: 2026-08-31T15:18:32+01:00
 
 ## Next Up

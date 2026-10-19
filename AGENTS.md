@@ -123,3 +123,9 @@ When a change set is agreed (global file section 4.1), update the affected
 `README.md` here, plus the Project Registry and global file if the project's
 location, routing or operation changed. Keep `README.txt` in step only as part
 of an agreed WordPress.org release.
+
+## Issues
+
+Things to fix are GitHub issues in this repository, using the shared labels;
+`ROADMAP.md` is what to build next. Check open issues at the start of work and
+record unrelated findings as issues (global agents file section 6.4).
