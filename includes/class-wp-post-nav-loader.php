@@ -51,11 +51,11 @@ class wp_post_nav_Loader {
 	 * Add a new action to the collection to be registered with WordPress.
 	 *
 	 * @since    0.0.1
-	 * @var      string               $hook             The name of the WordPress action that is being registered.
-	 * @var      object               $component        A reference to the instance of the object on which the action is defined.
-	 * @var      string               $callback         The name of the function definition on the $component.
-	 * @var      int      Optional    $priority         The priority at which the function should be fired.
-	 * @var      int      Optional    $accepted_args    The number of arguments that should be passed to the $callback.
+	 * @param    string               $hook             The name of the WordPress action that is being registered.
+	 * @param    object               $component        A reference to the instance of the object on which the action is defined.
+	 * @param    string               $callback         The name of the function definition on the $component.
+	 * @param    int                  $priority         Optional. The priority at which the function should be fired.
+	 * @param    int                  $accepted_args    Optional. The number of arguments that should be passed to the $callback.
 	 */
 	public function add_action( $hook, $component, $callback, $priority = 10, $accepted_args = 1 ) {
 		$this->actions = $this->add( $this->actions, $hook, $component, $callback, $priority, $accepted_args );
@@ -65,11 +65,11 @@ class wp_post_nav_Loader {
 	 * Add a new filter to the collection to be registered with WordPress.
 	 *
 	 * @since    0.0.1
-	 * @var      string               $hook             The name of the WordPress filter that is being registered.
-	 * @var      object               $component        A reference to the instance of the object on which the filter is defined.
-	 * @var      string               $callback         The name of the function definition on the $component.
-	 * @var      int      Optional    $priority         The priority at which the function should be fired.
-	 * @var      int      Optional    $accepted_args    The number of arguments that should be passed to the $callback.
+	 * @param    string               $hook             The name of the WordPress filter that is being registered.
+	 * @param    object               $component        A reference to the instance of the object on which the filter is defined.
+	 * @param    string               $callback         The name of the function definition on the $component.
+	 * @param    int                  $priority         Optional. The priority at which the function should be fired.
+	 * @param    int                  $accepted_args    Optional. The number of arguments that should be passed to the $callback.
 	 */
 	public function add_filter( $hook, $component, $callback, $priority = 10, $accepted_args = 1 ) {
 		$this->filters = $this->add( $this->filters, $hook, $component, $callback, $priority, $accepted_args );
@@ -81,13 +81,13 @@ class wp_post_nav_Loader {
 	 *
 	 * @since    0.0.1
 	 * @access   private
-	 * @var      array                $hooks            The collection of hooks that is being registered (that is, actions or filters).
-	 * @var      string               $hook             The name of the WordPress filter that is being registered.
-	 * @var      object               $component        A reference to the instance of the object on which the filter is defined.
-	 * @var      string               $callback         The name of the function definition on the $component.
-	 * @var      int      Optional    $priority         The priority at which the function should be fired.
-	 * @var      int      Optional    $accepted_args    The number of arguments that should be passed to the $callback.
-	 * @return   type                                   The collection of actions and filters registered with WordPress.
+	 * @param    array                $hooks            The collection of hooks that is being registered (that is, actions or filters).
+	 * @param    string               $hook             The name of the WordPress filter that is being registered.
+	 * @param    object               $component        A reference to the instance of the object on which the filter is defined.
+	 * @param    string               $callback         The name of the function definition on the $component.
+	 * @param    int                  $priority         The priority at which the function should be fired.
+	 * @param    int                  $accepted_args    The number of arguments that should be passed to the $callback.
+	 * @return   array                                   The collection of actions and filters registered with WordPress.
 	 */
 	private function add( $hooks, $hook, $component, $callback, $priority, $accepted_args ) {
 

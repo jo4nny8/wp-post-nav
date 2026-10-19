@@ -119,7 +119,7 @@ class WPPN_Settings {
 
 			$value = $input[ $key ];
 			if ( in_array( $key, $checkboxes, true ) ) {
-				$output[ $key ] = ( 'yes' === $value || true === $value || 1 === $value ) ? 'yes' : '';
+				$output[ $key ] = self::is_checked( $value ) ? 'yes' : '';
 			} elseif ( in_array( $key, $numbers, true ) ) {
 				$output[ $key ] = is_numeric( $value ) ? (string) absint( $value ) : $default;
 			} elseif ( in_array( $key, $colours, true ) ) {
@@ -147,6 +147,25 @@ class WPPN_Settings {
 		}
 
 		return $output;
+	}
+
+	/**
+	 * Decide whether a submitted or stored checkbox value means "on".
+	 *
+	 * The legacy settings page (2.0.x and the retained 2.1.0 screen) posts a
+	 * ticked box as array( 'Yes' => 'Yes' ), and 2.0.x stored that array in
+	 * wp_post_nav_options. Fresh 2.0.x installs and the Customizer use 'yes'
+	 * or a boolean.
+	 *
+	 * @param mixed $value Checkbox value.
+	 * @return bool
+	 */
+	private static function is_checked( $value ) {
+		if ( is_array( $value ) ) {
+			return in_array( 'Yes', $value, true ) || in_array( 'yes', $value, true );
+		}
+
+		return 'yes' === $value || 'Yes' === $value || true === $value || 1 === $value;
 	}
 
 	/**

@@ -1,6 +1,6 @@
 # WP Post Nav Project Handover
 
-Updated: 2026-08-30T23:26:24+01:00
+Updated: 2026-10-14 (branch and state corrected from the 13 October 2026 repository capture)
 
 ## Project identity
 
@@ -9,8 +9,13 @@ Updated: 2026-08-30T23:26:24+01:00
 - Repository: `jo4nny8/wp-post-nav`
 - Canonical Mac working copy: `/Users/johnbosworth/Development/websites/plugins.test/wp-content/plugins/wp-post-nav`
 - Development site: `plugins.test`
-- Active development branch: `develop`
-- Production branch: `main`
+- Active release branch: `feature/release-2.1.0` (branched from `develop`; at
+  the 13 October 2026 capture it was at `f55c5ca` with no GitHub upstream, so its
+  four release-preparation commits existed only on the Mac until pushed)
+- Integration branch: `develop` (`206a001`)
+- Production branch: `main` (`c3463be`, the WordPress.org 2.0.3 import)
+- GitHub default branch: origin/HEAD still points to the legacy `master`
+  (`e5e25b4`, "Initial commit"); retiring it is a separate decision
 - NAS reference: `/volume2/Development/Repositories/personal/checkouts/wp-post-nav`
 
 ## Start every task
@@ -26,9 +31,14 @@ Updated: 2026-08-30T23:26:24+01:00
 Recorded on 2026-08-30. `CURRENT_STATE.md` holds the latest verified state.
 
 - Development version: `2.1.0`.
-- Current approved development revision: `97cb66d`.
-- WordPress 7.1 runtime loading and 16 tests with 47 assertions pass.
-- Thirty pre-existing PHPStan findings remain documented.
+- Current release-candidate revision: `feature/release-2.1.0` @ `f55c5ca`
+  (supersedes the earlier `97cb66d` on `develop`).
+- WordPress 7.1 runtime loading passes; unit tests and WordPress integration
+  tests (`wppn_tests_` prefix on `plugins.test`) pass.
+- PHPStan findings: 30 at the capture; the overnight patch set and six focused
+  WP-08 batches resolve all findings (see `CHANGELOG.md`).
+- The 2.1.0 Customizer, settings migration and front end still need a
+  real-browser WordPress 7.1 acceptance test before any release decision.
 - WordPress.org publication is a separate explicit release decision.
 
 ## Finish every task

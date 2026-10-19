@@ -2,7 +2,7 @@
 
 ## Current testing position
 
-WP Post Nav now has a Composer-managed PHPUnit 10 framework. The repository contains isolated unit tests for lifecycle contracts, settings defaults and validation, hook registration, shortcode registration, and template availability. Integration tests are present as explicit placeholders and require a real WordPress installation.
+WP Post Nav now has a Composer-managed PHPUnit 9 framework compatible with the current WordPress integration test suite. The repository contains isolated unit tests for lifecycle contracts, settings defaults and validation, hook registration, shortcode registration, and template availability. Integration tests require a real WordPress installation.
 
 Phase 3 adds a WordPress test-library bootstrap, reusable content factories, and integration tests for posts, pages, a test custom post type, attachments, shortcode output, empty navigation, and multiple shortcode calls. The current frontend markup contract is recorded in `FRONTEND-BASELINE.md`.
 
@@ -53,7 +53,12 @@ To run integration tests after WordPress has been bootstrapped:
 WP_TESTS_DIR=/path/to/wordpress-tests-lib composer run test:integration
 ```
 
-The integration suite requires a MySQL database configured for the WordPress test library. The exact installation command depends on the local WordPress test installation; the bootstrap expects the standard `tests/phpunit/includes/functions.php` and `tests/phpunit/includes/bootstrap.php` files.
+The integration suite requires MySQL and a database/table prefix that is safe
+for the test bootstrap to reset. The bootstrap expects the standard
+`tests/phpunit/includes/functions.php` and `tests/phpunit/includes/bootstrap.php`
+files. For the local `plugins.test` run, the existing database is used only with
+the dedicated `wppn_tests_` table prefix; the staging `wp_` tables are not used
+by the test suite.
 
 ## Expected results
 

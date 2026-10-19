@@ -64,6 +64,24 @@ if ( class_exists( 'WP_UnitTestCase' ) ) {
 			$this->assertStringContainsString( 'Next Post', $output );
 		}
 
+		public function test_shortcode_respects_unticked_display_settings(): void {
+			$settings = WPPN_Settings::get_defaults();
+			$settings['wp_post_nav_show_title']          = '';
+			$settings['wp_post_nav_show_category']       = '';
+			$settings['wp_post_nav_show_post_excerpt']   = '';
+			$settings['wp_post_nav_show_featured_image'] = '';
+			update_option( WPPN_Settings::OPTION_NAME, $settings );
+			$this->go_to( get_permalink( self::$posts['middle'] ) );
+
+			$output = do_shortcode( '[wp_post_nav]' );
+
+			$this->assertStringContainsString( 'Previous Post', $output );
+			$this->assertStringNotContainsString( 'post-nav-title', $output );
+			$this->assertStringNotContainsString( 'post-nav-category', $output );
+			$this->assertStringNotContainsString( 'post-nav-excerpt', $output );
+			$this->assertStringNotContainsString( 'post-nav-image', $output );
+		}
+
 		public function test_shortcode_returns_empty_for_a_post_without_adjacent_posts(): void {
 			// Remove the shared fixtures so the new post has no neighbours; the test transaction restores them.
 			foreach ( self::$posts as $post_id ) {

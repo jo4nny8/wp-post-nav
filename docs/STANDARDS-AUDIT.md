@@ -54,7 +54,7 @@ Source baseline: WordPress.org SVN revision `3661533`, with the local `2.0.4` mo
 - PHPCS reports a substantial legacy backlog involving formatting, naming, escaping, documentation, and modern WordPress conventions.
 - Classes and functions use historic `wp_post_nav_*` naming and inconsistent capitalisation. These must be addressed only through a compatibility-aware, staged migration.
 - Several files have limited or incomplete PHPDoc and inconsistent spacing, comparison style, and function-call formatting.
-- `includes/class-wp-post-nav-shortcode.php` duplicates the main plugin bootstrap structure and should be investigated before any consolidation.
+- `includes/class-wp-post-nav-shortcode.php` duplicated the main plugin bootstrap structure. It was never loaded (nothing required it, and loading it beside `includes/class-wp-post-nav.php` would redeclare `wp_post_nav`), so it was removed on 2026-10-14. It still exists in the WordPress.org SVN `trunk/` and should be deleted there at the next deliberate release.
 
 ### Static analysis and testing
 
