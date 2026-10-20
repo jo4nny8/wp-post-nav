@@ -1,20 +1,32 @@
 # Changelog
 
-## Unreleased
+## Unreleased — 2026-10-20 — One changelog style
 
-- 2026-10-19: Added a "Project files" section to `AGENTS.md` summarising John's project files standard (folders, naming, starter threads, plain-English rule) with a link to the master copy.
-- 2026-10-15: Release packages now leave out the agent and project-record files
+- One changelog style for every project (John, 20 October 2026: "We need to get changelogs being written in the same style across all projects", then "Yes do that"). Headings now read `## [version] — YYYY-MM-DD — Short title`, `## Unreleased — YYYY-MM-DD — Short title` or `## YYYY-MM-DD — Short title`, as set out in the development standards (`standards/changelog-style.md`).
+- Only the headings changed: clock times dropped, dates moved into place, and short titles added where an entry had none. No history removed.
+- **Testing:** the standards' `check_changelog.py` passes on this file; a word-by-word comparison shows nothing below the headings changed.
+
+## Unreleased — 2026-10-19 — Project files section in AGENTS.md
+
+- Added a "Project files" section to `AGENTS.md` summarising John's project files standard (folders, naming, starter threads, plain-English rule) with a link to the master copy.
+
+## Unreleased — 2026-10-15 — Release packages leave out project records
+
+- Release packages now leave out the agent and project-record files
   (`CLAUDE.md`, `CURRENT_STATE.md`, `FILESYSTEM_MAP.md`,
   `DEVELOPMENT_CONTEXT.md`, `PROJECT_HANDOVER.md`, `ROADMAP.md`). Checked by building the
   package and listing its contents.
-- 2026-10-15: Adopted the agreed project documentation standard: AGENTS.md now
+
+## Unreleased — 2026-10-15 — Agreed project documentation standard
+
+- Adopted the agreed project documentation standard: AGENTS.md now
   points to the global agents file and holds project rules only; CLAUDE.md and
   CODEX.md are pointers; added CLAUDE.md, CURRENT_STATE.md and
   FILESYSTEM_MAP.md. Also restructured README.md and corrected the retired
   working-copy path in PROJECT_HANDOVER.md. Documentation only; no plugin code,
   version or README.txt change.
 
-## 2026-08-31T15:18:32+01:00 - Add project roadmap
+## 2026-08-31 — Add project roadmap
 
 - Added the canonical project roadmap and linked it from the agent, handover and
   README entry points.
@@ -23,14 +35,14 @@
 - Testing completed: documentation/state review, diff check and focused secret
   scan.
 
-## 2026-08-30T23:26:24+01:00 - Add project handover
+## 2026-08-30 — Add project handover
 
 - Added the canonical repository, branch, runtime and NAS reference map.
 - Added a repeatable task startup and completion checklist for Codex work.
 - Testing completed: documentation review and `git diff --check`.
 - Known limitations remain unchanged.
 
-## 2026-08-30T23:01:47+01:00 — Declare legacy runtime properties
+## 2026-08-30 — Declare legacy runtime properties
 
 - Declared the core plugin name and administration state properties that were
   previously created dynamically at runtime.
@@ -42,7 +54,7 @@
 - Known limitation: PHPStan still reports 30 pre-existing legacy findings,
   including the separately documented duplicate shortcode bootstrap file.
 
-## 2026-08-23T19:18:00Z — Improve Customizer guidance and safe controls
+## 2026-08-23 — Improve Customizer guidance and safe controls
 
 - Clarified that excerpt length is measured in words.
 - Replaced the free-text post-type field with safe checkboxes matching the existing Settings page.
@@ -50,32 +62,32 @@
 - Added explanatory documentation to every Customizer section and the key controls.
 - Ensured checkbox selections continue to save as the existing compatible post-type array.
 
-## 2026-08-23T19:02:00Z — Refresh all Customizer preview settings
+## 2026-08-23 — Refresh all Customizer preview settings
 
 - Changed all WP Post Nav Customizer controls to refresh the live preview when changed.
 - Ensured visibility, excerpt, image, navigation, colour, typography and layout changes are rendered through the existing frontend code before publishing.
 - Preserved the existing settings option, public output structure and compatibility-sensitive keys.
 
-## 2026-08-23T18:49:00Z — Harden Customizer preview initialisation
+## 2026-08-23 — Harden Customizer preview initialisation
 
 - Prevented the Customizer preview script from throwing when WordPress has not exposed a matching live setting in the preview context.
 - Preserved live CSS updates where the Customizer setting API is available.
 - Bumped the preview asset version so existing browser caches receive the corrected script.
 
-## 2026-08-23T18:43:00Z — Fix Customizer post-type control fatal
+## 2026-08-23 — Fix Customizer post-type control fatal
 
 - Fixed the Customizer post-type control fatal caused by passing the compatible post-type array directly to WordPress’s string textarea renderer.
 - Added a dedicated control that displays post types as newline-separated text while retaining the existing array storage format.
 - Confirmed the PHP 8.2/8.3 dynamic-property notices and WooCommerce null-offset notices are separate issues and remain unchanged.
 
-## 2026-08-23T18:31:00Z — Fix Customizer registration lifecycle
+## 2026-08-23 — Fix Customizer registration lifecycle
 
 - Registered the WP Post Nav Customizer hooks directly when `WPPN_Customizer` is constructed.
 - Removed the indirect loader registration that could leave the panel unavailable before `customize_register` fired on a live WordPress site.
 - Added a regression assertion for the Customizer lifecycle hooks.
 - Existing PHP 8.2/8.3 dynamic-property deprecations in legacy classes remain documented and unchanged.
 
-## 2026-08-23T18:12:00Z — Version 2.1.0 Customizer settings migration
+## 2026-08-23 — Version 2.1.0 Customizer settings migration
 
 - Added `WPPN_Settings` as the shared settings, sanitisation and compatibility layer.
 - Added `WPPN_Migrations` for a verified, idempotent migration from 2.0.4 to the `wppn_settings` option.
@@ -85,7 +97,7 @@
 - Added migration and settings compatibility tests, and documented upgrade behaviour in `README.md`, `README.txt`, `docs/DEVELOPMENT.md` and `docs/TESTING.md`.
 - Version updated to 2.1.0. Historical SVN tags remain unchanged.
 
-## 2026-08-23T17:47:16Z — Phase 4A Customizer architecture and migration standards
+## 2026-08-23 — Phase 4A Customizer architecture and migration standards
 
 - Added `docs/CUSTOMIZER-AUDIT.md` documenting the current settings page, options, validation, frontend consumers, dynamic CSS, and compatibility risks.
 - Added `docs/CUSTOMIZER-ARCHITECTURE.md` defining the proposed `WPPN_Settings`, `WPPN_Customizer`, and `WPPN_Migrations` responsibilities.
@@ -93,7 +105,7 @@
 - Documented mandatory settings and database migration rules in the central `jo4nny8/jo4nny8-development-standards` repository.
 - No plugin runtime code, settings, database options, public APIs, rendering logic, or frontend output was changed.
 
-## 2026-08-23T16:37:49Z — Phase 3 WordPress integration testing and CI
+## 2026-08-23 — Phase 3 WordPress integration testing and CI
 
 - Added a WordPress test-library bootstrap with a separate integration PHPUnit configuration.
 - Added reusable post, page, custom post type, taxonomy, and attachment fixtures.
@@ -103,7 +115,7 @@
 - Updated `docs/TESTING.md` with WordPress test-library and MySQL setup instructions.
 - No production plugin code, public interface, frontend markup, CSS, or runtime behaviour was changed.
 
-## 2026-08-23T14:53:21Z — Phase 2 compatibility testing foundation
+## 2026-08-23 — Phase 2 compatibility testing foundation
 
 - Added Composer-managed PHPUnit 10 and the `tests/` unit and integration test structure.
 - Added lifecycle, settings, hook, shortcode-registration, and template-availability compatibility tests.
@@ -111,27 +123,27 @@
 - Updated package generation to exclude tests and development documentation from the WordPress.org distribution archive.
 - No plugin runtime behaviour, public interface, hook, filter, option, shortcode, or rendering structure was changed.
 
-## 2026-08-23T13:20:59Z — Jo4nny8 workflow migration audit
+## 2026-08-23 — Jo4nny8 workflow migration audit
 
 - Added `AGENTS.md`, `CODEX.md`, and `docs/DEVELOPMENT.md` with project conventions and development workflow guidance.
 - Added `docs/STANDARDS-AUDIT.md` covering coding, WordPress, frontend, documentation, compatibility, and release standards.
 - Added `docs/MIGRATION-PLAN.md` with staged maintenance, architecture, and future-feature phases.
 - Confirmed that no plugin functionality or existing public interfaces were changed during this audit.
 
-## 2026-08-23T09:48:47Z — British English standardisation
+## 2026-08-23 — British English standardisation
 
 - Standardised maintained comments, documentation, changelog prose, and user-facing text to British English.
 - Preserved WordPress and API identifiers, compatibility-sensitive option keys, CSS properties, and literal data attributes.
 - Rechecked PHP syntax, Composer configuration, package generation, and ZIP integrity after the text-only changes.
 
-## 2026-08-23T09:44:46Z — GitHub remote connected
+## 2026-08-23 — GitHub remote connected
 
 - Configured `https://github.com/jo4nny8/wp-post-nav.git` as the Git `origin` remote.
 - Published the `main` and `develop` branches and the `wordpress-org-2.0.3` tag.
 - Left the pre-existing GitHub `master` branch unchanged.
 - WordPress.org SVN remains a separate release-publishing destination.
 
-## 2026-08-23T08:51:12Z — Development workflow established
+## 2026-08-23 — Development workflow established
 
 - Imported the official WordPress.org SVN baseline at revision `3661533`.
 - Added the historical `tags/` and directory `assets/` snapshots.
@@ -144,7 +156,7 @@
 - PHP lint and package validation are required before release; full WordPress integration tests remain outstanding.
 - PHPCS and PHPStan now run and report existing legacy violations; they are intentionally not suppressed with a baseline.
 
-## 2026-08-23T07:36:15Z — Version 2.0.4
+## 2026-08-23 — Version 2.0.4
 
 ### Summary
 
