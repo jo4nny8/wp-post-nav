@@ -34,7 +34,7 @@ Recorded on 2026-08-30. `CURRENT_STATE.md` holds the latest verified state.
 ## Finish every task
 
 - Run the checks appropriate to the change.
-- Update `CHANGELOG.md` with an ISO 8601 completion timestamp.
+- Update `CHANGELOG.md` with a new entry in the shared changelog style (`## Unreleased — YYYY-MM-DD — Short title`, or `## [version] — YYYY-MM-DD — Short title` for a release; development standards `standards/changelog-style.md`).
 - Review the diff and secret scan before committing.
 - Push the approved branch to GitHub.
 - After an agreed merge, refresh the NAS reference checkout as set out in the
