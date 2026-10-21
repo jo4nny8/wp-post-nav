@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased — 2026-10-21 — Uninstall cleans every site
+
+- `uninstall.php` now removes the plugin options and the notice transient from every site on a multisite network, not just the main site, and meets the coding standard (standards repair, issue #6).
+- **Testing:** PHP lint and PHPCS pass on `uninstall.php`; the unit tests pass (16 tests). Not run inside a multisite WordPress install.
+
 ## Unreleased — 2026-10-20 — One changelog style
 
 - One changelog style for every project (John, 20 October 2026: "We need to get changelogs being written in the same style across all projects", then "Yes do that"). Headings now read `## [version] — YYYY-MM-DD — Short title`, `## Unreleased — YYYY-MM-DD — Short title` or `## YYYY-MM-DD — Short title`, as set out in the development standards (`standards/changelog-style.md`).
