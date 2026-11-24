@@ -22,7 +22,7 @@ documentation here.
 | Distribution package | `bin/build-package.sh` | `.gitignore` | `composer run build` | `unzip -t wp-post-nav.zip`; `unzip -l wp-post-nav.zip` |
 | WordPress.org readme and changelog | `README.txt` | `assets/` (directory banner, icons, screenshots) | None | Release decision only |
 | Development documentation | `docs/` | `DEVELOPMENT-ASSESSMENT.md`, `REPOSITORY-COMPARISON.md`, `PROJECT_HANDOVER.md`, `Examples.txt` | None | Review |
-| Historical WordPress.org releases | `tags/` | None | None | Reference only; do not edit |
+| Historical WordPress.org releases | WordPress.org SVN `tags/`, or this repository's Git history before 24 November 2026 | None | None | Reference only |
 
 ## Global Design Controls
 
