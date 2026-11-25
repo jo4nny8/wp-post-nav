@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased — 2026-11-24 — Old release copies removed
+
+- Removed `tags/` (copies of releases 0.1.1 to 2.0.3, about 30,000 of the repository's 37,000 PHP lines). They were never packaged or loaded and remain in WordPress.org SVN and in the Git history. Found in the 23 November check-up; John agreed on 24 November 2026.
+
 ## Unreleased — 2026-10-21 — Uninstall cleans every site
 
 - `uninstall.php` now removes the plugin options and the notice transient from every site on a multisite network, not just the main site, and meets the coding standard (standards repair, issue #6).

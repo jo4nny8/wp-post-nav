@@ -27,7 +27,7 @@ Version 2.1.0 stores validated settings in `wppn_settings`. On upgrade from 2.0.
 ## Boundaries
 
 - `README.txt` is the public WordPress.org readme; `CHANGELOG.md` is the development changelog.
-- `tags/` and `assets/` are historical WordPress.org material kept for reference and excluded from the package.
+- `assets/` is WordPress.org directory material, excluded from the package. Old release copies (`tags/`) were removed on 24 November 2026; they remain in WordPress.org SVN and in this repository's history.
 - Composer dependencies, built ZIPs, local WordPress files and secrets do not belong in this repository.
 
 ## Development
