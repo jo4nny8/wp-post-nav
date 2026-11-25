@@ -1,11 +1,23 @@
 # WP Post Nav Agent Entry Point
 
-Before any work, read the global agents file
-(`development_project_framework/agents/global_agents.md`) and the Authority
-Matrix (`development_project_framework/CODEX_AUTHORITY_MATRIX.md`). They set
-the rules, approvals, working modes, Git process and reporting style for every
-project. This file covers this project only, cannot widen them, and loses to
-them if they ever disagree.
+On every task, before any other step, read these afresh (not from a summary
+of an earlier session):
+
+1. the global agents file (`development_project_framework/agents/global_agents.md`)
+   and the Authority Matrix (`development_project_framework/CODEX_AUTHORITY_MATRIX.md`).
+   They set the rules, approvals, working modes, Git process, house rules and
+   reporting style for every project;
+2. this file, for this project's own rules; and
+3. for any coding or development work, the development standards in
+   `jo4nny8/jo4nny8-development-standards`: its `AGENTS.md` and the
+   `standards/` folder, which say how code is written, checked and documented
+   (Mac: `~/Development/Personal/jo4nny8-development-standards`; NAS:
+   `/volume2/Development/Work/personal/jo4nny8-development-standards`).
+
+This file covers this project only and cannot widen the global file or the
+Authority Matrix; if this file or the standards disagree with those two,
+those two win. Changes that affect other projects or the global rules go through the
+Master Project (global file section 3.7).
 
 ## Project
 
@@ -29,6 +41,14 @@ them if they ever disagree.
   folder), reload `http://plugins.test/wp-admin/plugins.php` and confirm the
   plugin version and the changed behaviour (global file section 3.1, "Ready
   means on the Mac").
+
+## Tools
+
+- PHP and JavaScript readers; also search hook names as plain text, because
+  WordPress wires code up by name.
+- `/security-review` before asking John to make a change official.
+- Python, Swift, Xcode and the ads connectors (company tools) are not used
+  here. CodeGraph is not used.
 
 ## Read First
 
