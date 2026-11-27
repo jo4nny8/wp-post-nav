@@ -120,11 +120,11 @@ Master Project (global file section 3.7).
   public WordPress.org changelog.
 - Build the distribution archive with `composer run build`
   (`bin/build-package.sh`) and inspect it with `unzip -l wp-post-nav.zip`
-  before any release. On `develop` the script excludes `AGENTS.md`,
-  `CODEX.md` and `docs/` but not the other root development documents
-  (`CLAUDE.md`, `README.md`, `CHANGELOG.md`, `CURRENT_STATE.md`,
-  `FILESYSTEM_MAP.md`, `ROADMAP.md`, `PROJECT_HANDOVER.md`); confirm they are
-  excluded before any package is published.
+  before any release. The script copies only an allow list of plugin files
+  and folders (plus `README.txt`, `LICENSE.txt` and `Examples.txt`) and stops,
+  naming the file, if a Markdown file or unexpected hidden file reaches the
+  package. A new plugin folder or top-level file must be added to that list
+  on purpose.
 
 ### Validation
 
