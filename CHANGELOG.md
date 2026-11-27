@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased — 2026-11-27 — Release package holds only the plugin
+
+- The release package build now copies an agreed list of plugin files instead of leaving out a list of development files, and stops, naming the file, if a Markdown note or unexpected hidden file gets into the package. Before this, `README.md`, `CHANGELOG.md` and any new tool folder went into the ZIP (issue #6, item 2).
+- Planned with GitHub Spec Kit as a trial (`specs/001-clean-release-package/`).
+- **Testing:** built the package and compared its file list with the previous build (same plugin files, now without `README.md` and `CHANGELOG.md`); `unzip -t` passes; a stray `includes/STRAY.md` and `admin/.env` stop the build and are named. No plugin code, version or `Stable tag` change.
+
 ## Unreleased — 2026-11-24 — Old release copies removed
 
 - Removed `tags/` (copies of releases 0.1.1 to 2.0.3, about 30,000 of the repository's 37,000 PHP lines). They were never packaged or loaded and remain in WordPress.org SVN and in the Git history. Found in the 23 November check-up; John agreed on 24 November 2026.
